@@ -1,0 +1,89 @@
+= form_for @queue_list do |f|
+  .row style=("margin-bottom: 0;")
+    .col-lg-12
+      h2 style="margin-top:0;color:#424753;"  Queue
+  .row style=("margin-bottom: 0;")
+    = render "create_new_queue_button"
+    .col-lg-12
+      ol.full_underline.bcrumb style=("padding-left: 0;")
+        li.h5
+          = link_to "BATCH SETUP", edit_queue_list_path(@queue_list)
+        li.h5.active ACTIVITY LEVEL
+    .col-lg-12
+
+  = f.hidden_field :activity
+
+  .row.flex-parent
+    .row.batch-setup-box
+      .col-lg-6
+        h4 style="margin-bottom: 30px;"  SET ACTIVITY LEVEL
+
+      .col-lg-6
+        span.batch-name-right.h4
+          = @queue_list.name
+          = image_tag @queue_list.image.url, class: "cat_img" if @queue_list.image.present?
+
+      .row
+        #opt_panels.row
+          .col-md-12
+            .col-md-4
+              #opt_casual onclick="set_frequency(1);" class="opt_panel #{'opt_selected' if @queue_list.activity.to_i == 1}"
+                = image_tag "casual.png"
+                h5 style="color:#000;" CASUAL
+                p This is for those who don't want to post much. You'll post 1-2 times per week on Facebook, LinkedIn, Instagram and 4 times on Twitter.
+
+            .col-md-4
+              #opt_active onclick="set_frequency(2);" class="opt_panel #{'opt_selected' if @queue_list.activity.to_i == 2}"
+                = image_tag "active.png"
+                h5 style="color:#000;"  ACTIVE
+                p For those looking for more grunt behind their social media marketing, choose this level. Posting will happen 3-4 times per week on Facebook and LinkedIn, 4-5 times on Instagram, and 12 times on Twitter.
+
+            .col-md-4
+              #opt_turbo onclick="set_frequency(3);" class="opt_panel #{'opt_selected' if @queue_list.activity.to_i == 3}"
+                = image_tag "turbo.png"
+                h5 style="color:#000;"  TURBOCHARGE
+                p This is next level. Its enough to put you in front of your audience without annoying them! Posting will occur 6-7 times per week on Facebook and LinkedIn, 12 times on Instagram and 32 post on Twitter.
+
+            - if false
+              .col-md-3
+                .opt_panel
+                  h5 style="color:#000;" CUSTOMISE
+                  ul style="list-style: none;margin: 0;padding:0"
+                    - (0..6).each do |wd|
+                      li
+                        label
+                          input type="checkbox"
+                          = Date::DAYNAMES[wd]
+                        input type="text" value="9:00 AM"
+
+        .row style="margin-top: 3%;margin-bottom: 0;"
+          .col-sm-5
+          .col-sm-4
+            .col-sm-6
+              label.cust-label from
+            .col-sm-6
+              label.cust-label to
+
+        .row
+          .col-md-2
+          .col-md-3 style="text-align:center;"
+            span.h5 START OF YOUR QUEUE
+          .col-sm-4
+            .col-sm-6
+              = f.text_field :started_on, class: "js-activity-start-on js-activity-date form-control borderless"
+            .col-sm-6
+              = f.text_field :ended_on, class: "js-activity-end-on js-activity-date form-control borderless"
+          .col-md-2
+
+      .col-sm-12 align="right"
+        - if params[:creating].present?
+          = hidden_field_tag :creating, true
+          button.link-red.link-btn type="submit"
+            | CREATE QUEUE
+            '
+            i.fa.fa-arrow-right
+        - else
+          button.link-red.link-btn type="submit"
+            | UPDATE QUEUE
+            '
+            i.fa.fa-arrow-right

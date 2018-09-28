@@ -1,0 +1,12 @@
+var profiles = [];
+$(document).ready(function() {
+  $(document).on('change', '.checked_profile', function() {
+    var profile = $(this).val();
+    var idx = profiles.indexOf(profile);
+    if ($(this).prop('checked') && idx === -1) {
+      profiles.push(profile);
+    } else if (!($(this).prop('checked')) && idx >= 0) {
+      profiles.splice(idx, 1);
+    }
+  });
+});

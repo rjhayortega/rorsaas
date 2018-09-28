@@ -1,0 +1,12 @@
+= simple_form_for(@agent) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :photo
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :email
+    = f.input :phone
+
+  .form-actions
+    = f.button :submit

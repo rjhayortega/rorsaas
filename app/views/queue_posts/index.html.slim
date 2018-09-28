@@ -1,0 +1,37 @@
+h1 Listing queue_posts
+
+table
+  thead
+    tr
+      th Description
+      th Post url
+      th Utc offset
+      th Queue post
+      th Image
+      th Subimage1
+      th Subimage2
+      th Subimage3
+      th Queue list
+      th
+      th
+      th
+
+  tbody
+    - @queue_posts.each do |queue_post|
+      tr
+        td = queue_post.description
+        td = queue_post.post_url
+        td = queue_post.utc_offset
+        td = queue_post.queue_post
+        td = queue_post.image
+        td = queue_post.subimage1
+        td = queue_post.subimage2
+        td = queue_post.subimage3
+        td = queue_post.queue_list
+        td = link_to 'Show', queue_post
+        td = link_to 'Edit', edit_queue_post_path(queue_post)
+        td = link_to 'Delete', queue_post, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Queue post', new_queue_list_post_path

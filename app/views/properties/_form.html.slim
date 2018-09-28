@@ -1,0 +1,26 @@
+= simple_form_for [@property, PropertyImage.new], remote: false do |f|
+  - if @property.images.any?
+    - @property.images.each do |image|
+      = image_tag image.file.url, style: 'width: 100%'
+  = f.input :file, input_html: { class: "fileupload" }, label: "Photos"
+
+= simple_form_for @property, remote: false do |f|
+  - if @property.logo.present?
+    = image_tag @property.logo.url, style: 'width: 100%'
+  = f.input :logo
+  = f.input :name
+  = f.input :slug
+  = f.input :description, input_html: { rows: 15 }
+  = f.input :address, as: :text, label: "Street Address"
+  = f.input :address2, as: :text, label: "Suburb, state and postal code"
+  = f.input :country
+  = f.input :price
+
+  = f.input :beds
+  = f.input :bath
+  = f.input :parking
+
+  = f.input :is_rent, as: :select, include_blank: false
+
+  = f.association :agent, collection: current_user.agents, label_method: :full_name
+  = f.button :submit

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <table class="tg" style="width:600px;border-collapse: collapse;border-spacing: 0;margin: 0px auto;">
+      <tr>
+        <td class="tg-yw4l" style="width: 150px;font-family: Arial, sans-serif;font-size: 14px;font-weight: normal;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><b>Instagram Username: </b></td>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;font-weight: normal;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><%= @username %></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><b>Text: </b></td>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><%= @post_text %></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><b>Image: </b></td>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><%= @post_image %></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><b>Link: </b></td>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><%= @post_url %></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><b>Schedule Date (UTC time): </b></td>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><%= @post_scheduled_at %></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><b>Schedule Date (Aus Date): </b></td>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><%= @post_scheduled_at_AUS_timezone %></td>
+      </tr>
+      <tr>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><b>Schedugram ID: </b></td>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"></td>
+      </tr>
+       <!-- <tr>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;"><b>External Image URL POSTED: </b></td>
+        <td class="tg-yw4l" style="font-family: Arial, sans-serif;font-size: 14px;padding: 15px 10px;border-style: solid;border-width: 1px;overflow: hidden;word-break: normal;vertical-align: top;">$ext_url</td>
+      </tr> -->
+      
+    </table>
+    <br>  
+  </body>
+</html>

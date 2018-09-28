@@ -1,0 +1,11 @@
+.col-lg-3
+  .card
+    - if queue_list.image.present?
+      = link_to queue_list, class: 'card-cover' do
+        = image_tag queue_list.image.url
+
+    .card-content
+      h4.headline--center = link_to queue_list.name, queue_list
+
+      = link_to 'SEE CALENDAR', calendar_queue_list_path(queue_list), class: "btn-round btn-black"
+      = link_to 'EDIT QUEUE', queue_list_path(queue_list), class: "btn-round btn-red"

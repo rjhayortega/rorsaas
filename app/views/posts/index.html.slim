@@ -1,0 +1,5 @@
+h1 Calendar
+
+.row
+  .col-md-8#calendar data-url=request.path data-events=PostsController.render('posts/index.json', assigns: { posts: @posts })
+  .col-md-4#sidebar_post_detail

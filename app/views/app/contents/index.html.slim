@@ -1,0 +1,11 @@
+table.table
+  tr
+    th id
+    th description
+    th
+
+  - @contents.each do |content|
+    tr
+      td = content.id
+      td = content.description
+      td = link_to "Add Idea", "/add_idea.php?content_id=#{content.id}"

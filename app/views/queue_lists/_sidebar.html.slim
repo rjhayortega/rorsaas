@@ -1,0 +1,85 @@
+#sidebar-wrapper
+  ul.sidebar-nav
+    / li
+    /   = link_to reports_path do
+    /     span.fa-stack.fa-lg
+    /       i.fa.fa-circle.fa-stack-1x.cust-size-bg
+    /       i.fa.fa-home.fa-stack-1x.cust-size-fg
+    /     span.list-text REPORTS
+
+    li
+      = link_to new_post_path do
+        span.fa-stack.fa-lg
+          i.fa.fa-circle.fa-stack-1x.cust-size-bg
+          i.fa.fa-calendar-o.fa-stack-1x.cust-size-fg
+        span.list-text PUBLISH
+
+    li
+      = link_to posts_path do
+        span.fa-stack.fa-lg
+          i.fa.fa-circle.fa-stack-1x.cust-size-bg
+          i.fa.fa-gear.fa-stack-1x.cust-size-fg
+        span.list-text CALENDAR
+
+    li
+      = link_to queue_lists_path do
+        span.fa-stack.fa-lg
+          i.fa.fa-circle.fa-stack-1x.cust-size-bg
+          i.fa.fa-gears.fa-stack-1x.cust-size-fg
+        span.list-text QUEUE
+
+    - if current_user&.is_web_admin?
+      li
+        = link_to properties_path do
+          span.fa-stack.fa-lg
+            i.fa.fa-circle.fa-stack-1x.cust-size-bg
+            i.fa.fa-list-ul.fa-stack-1x.cust-size-fg
+          span.list-text LANDING PAGE
+
+    li
+      = link_to accounts_path do
+        span.fa-stack.fa-lg
+          i.fa.fa-circle.fa-stack-1x.cust-size-bg
+          i.fa.fa-gear.fa-stack-1x.cust-size-fg
+        span.list-text ACCOUNTS
+
+    - if can? :read, Office
+      li
+        = link_to offices_path do
+          span.fa-stack.fa-lg
+            i.fa.fa-circle.fa-stack-1x.cust-size-bg
+            i.fa.fa-gear.fa-stack-1x.cust-size-fg
+          span.list-text OFFICES
+
+    li
+      = link_to facebook_connected_accounts_path do
+        span.fa-stack.fa-lg
+          i.fa.fa-circle.fa-stack-1x.cust-size-bg
+          i.fa.fa-gear.fa-stack-1x.cust-size-fg
+        span.list-text FACEBOOK ADS
+
+    li
+      = link_to promotion_posts_path do
+        span.fa-stack.fa-lg
+          i.fa.fa-circle.fa-stack-1x.cust-size-bg
+          i.fa.fa-gear.fa-stack-1x.cust-size-fg
+        span.list-text PROMOTIONS
+
+    li
+      a data-turbolinks="false" href="http://app.knackmap.com/privacy_policy.php"
+        span.fa-stack.fa-lg
+          i.fa.fa-circle.fa-stack-1x.cust-size-bg
+          i.fa.fa-gear.fa-stack-1x.cust-size-fg
+        span.list-text TERMS
+    li
+      a data-turbolinks="false" href="http://app.knackmap.com/privacy_policy.php"
+        span.fa-stack.fa-lg
+          i.fa.fa-circle.fa-stack-1x.cust-size-bg
+          i.fa.fa-gear.fa-stack-1x.cust-size-fg
+        span.list-text PRIVACY
+
+    li
+      a#menu-toggle data-turbolinks="false" href="javascript:void(0)"
+        span.fa-stack.fa-lg
+          i.fa.fa-arrow-circle-left.fa-stack-1x.cust-size-bg
+        span.list-text COLLAPSE

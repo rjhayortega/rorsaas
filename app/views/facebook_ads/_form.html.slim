@@ -1,0 +1,61 @@
+= simple_form_for [@facebook_connected_account, @facebook_ad] do |f|
+  = f.error_notification
+
+  h3 What is your objective?*
+  = f.input :objective, label: false, placeholder: "Type or select an option", input_html: { class: "js-typeahead" }
+
+  h3 Name your Campaign?*
+  = f.input :campaign_name, label: false
+
+  h3 Where is your audience located?
+  = f.input :audience_location, label: 'What suburb/city do they live in? How far away from the property would people be? What locations are you not interested in talking to?'
+
+  h3 What audience group would be interested in this property?*
+  = f.input :audience_group, label: false
+
+  h3 Is their a gender you would prefer promoting to?
+  = f.input :gender_preference, label: false
+
+  h3 Ok, let's get a little bit more detail!
+  small
+    ' Describe other things about your audience.
+    br
+    ' What are they interested in?
+    br
+    ' Do they have kids?
+    br
+    ' How old are they?
+    br
+    ' Are they married? Single?
+    br
+    ' What features nearby do you think will be of interest to this buyer/renter?
+    br
+    ' Is there anyone that you think will NOT be interested?
+
+  = f.input :detail, label: false
+
+  h3 What is your total budget?*
+  = f.input :total_budget, label: 'How much are you wanting to spend over the course of this campaign?'
+
+  h3 When do you want this ad to start?
+  = f.input :start_on, label: false
+
+  h3 When do you want this ad to finish?
+  = f.input :finish_on, label: false
+
+  h3 What is the URL for the property that you want to promote?
+  = f.input :url, label: false
+
+  h3 What Headline would you like to use for your ad?
+  = f.input :headline, label: "If you'd like us to create this, please leave this blank."
+
+  h3 Go on, give us your best pitch!
+  = f.input :best_pitch, label: 'Tell us clearly, and succinctly, what is special about the property. Keep it short, less is more!'
+
+  h3 Is there a particular image that you'd like to use for this ad?
+  = f.input :image, label: "If you're happy for us to choose from the property images, then please leave this blank :)"
+
+  h3 Choosen the page
+  = f.association :page, label: false, collection: current_user.profile_pages, include_blank: false
+
+  = f.button :submit

@@ -1,0 +1,28 @@
+<div class="calender_insert" style="margin-top:-22px;height: 100%;">
+  <a style="min-height: 100px;margin-top: 15px;padding: 5%;" class="fc-day-grid-event fc-h-event fc-start fc-end fc-draggable fc-resizable" href="javascript:void(0);" id="post_status_color_red">
+    <% (post.profiles + post.pages).map { |profile| profile.network }.compact.uniq.each do |network| %>
+      <i class="fa fa-<%= network %>"></i>
+    <% end %>
+
+    <div class="fc-content">
+      <% if post.legacy_capatable_image_url_thumb.present? %>
+        <center>
+          <div class="fc-content">
+            <img src="<%= post.legacy_capatable_image_url_thumb %>" width="100%" style="margin-left:0px; width:100%;">
+          </div>
+        </center>
+      <% elsif post.other_image_url.present? %>
+        <center>
+          <div class="fc-content">
+            <img src="<%= post.other_image_url %>" width="100%" style="margin-left:0px; width:100%;">
+          </div>
+        </center>
+      <% end %>
+
+      <span style="display:none;">all</span>
+      <span class="fc-title"></span>
+    </div>
+
+    <div class="fc-resizer fc-end-resizer"></div>
+  </a>
+</div>

@@ -1,0 +1,19 @@
+h1 Listing profile_pages
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @profile_pages.each do |profile_page|
+      tr
+        td = link_to 'Show', profile_page
+        td = link_to 'Edit', edit_profile_page_path(profile_page)
+        td = link_to 'Delete', profile_page, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Profile page', new_profile_page_path

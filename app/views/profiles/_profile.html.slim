@@ -1,0 +1,28 @@
+
+- is_page ||= false
+- unless is_page && profile.network == 'facebook' && profile.connect == 0
+  .col-sm-3
+    .account-card id="acc#{profile.id}"
+      label class="actual-box #{profile.id.in?(profile.is_a?(Profile) ? @queue_list&.profile_ids || [] : @queue_list&.profile_page_ids || []) ? "acc-checked" : ''}"
+        .row
+          div class="col-sm-12 acc-net-title acc-#{profile.network}" style="text-transform: uppercase;"
+            = profile.network
+
+        .card-cover
+          = image_tag profile.profile_pic_with_default, class: "img--tiny img--round", alt: profile.name, size: '100x100'
+
+        .card-content
+          h5 @#{profile.fname}
+
+          - if @queue_list
+            p
+              - if profile.is_a?(Profile)
+                = check_box_tag "queue_list[profile_ids][]", profile.id, profile.id.in?(@queue_list&.profile_ids || []), class: "hide js-toggling-checkbox"
+              - else
+                = check_box_tag "queue_list[profile_page_ids][]", profile.id, profile.id.in?(@queue_list&.profile_page_ids || []), class: "hide js-toggling-checkbox"
+
+          p = link_to 'SEE CALENDAR', profile, class: "btn-round btn-black"
+
+          - if local_assigns[:show_delete] == true
+            p
+              = link_to 'DELETE', profile, method: :delete, data: { confirm: "Are you sure to delete #{profile.name}" }, remote: false, class: 'btn-round btn-black'

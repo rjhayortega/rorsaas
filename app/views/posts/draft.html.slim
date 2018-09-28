@@ -1,0 +1,12 @@
+h1 Promotions
+
+= link_to "New post", new_post_path(status_draft_post: 1)
+
+table.table
+  - @posts.each do |post|
+    tr
+      td = post.id
+      td = post.description
+      td = link_to 'Add to Queue', select_queue_post_path(post), class: "btn btn-default"
+      td = button_to 'Post now', deploy_post_path(post), class: "btn btn-default"
+      td = link_to 'Distribute to Offices', select_people_post_path(post), class: "btn btn-default"

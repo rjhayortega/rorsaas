@@ -1,0 +1,46 @@
+h3 What is your objective?*
+p = @facebook_ad.objective
+
+h3 Name your Campaign?*
+p = @facebook_ad.campaign_name
+
+h3 Where is your audience located?
+p = @facebook_ad.audience_location
+
+h3 What audience group would be interested in this property?*
+p = @facebook_ad.audience_group
+
+h3 Is their a gender you would prefer promoting to?
+p = @facebook_ad.gender_preference
+
+h3 Ok, let's get a little bit more detail!
+
+p = @facebook_ad.detail
+
+h3 What is your total budget?*
+p = @facebook_ad.total_budget
+
+h3 When do you want this ad to start?
+p = @facebook_ad.start_on
+
+h3 When do you want this ad to finish?
+p = @facebook_ad.finish_on
+
+h3 What is the URL for the property that you want to promote?
+p = @facebook_ad.url
+
+h3 What Headline would you like to use for your ad?
+p = @facebook_ad.headline
+
+h3 Go on, give us your best pitch!
+p = @facebook_ad.best_pitch
+
+h3 Is there a particular image that you'd like to use for this ad?
+p = image_tag @facebook_ad.image, style: "width: 200px"
+
+h3 Pages
+p = @facebook_ad.page.name
+
+= link_to 'Edit', edit_facebook_ad_path(@facebook_ad)
+'  |
+= link_to 'Back', @facebook_ad.facebook_connected_account

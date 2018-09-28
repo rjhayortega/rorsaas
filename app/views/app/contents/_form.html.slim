@@ -1,0 +1,9 @@
+= form_for @app_content, remote: false do |f|
+  - if @app_content.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@app_content.errors.count, "error")} prohibited this app_content from being saved:"
+      ul
+        - @app_content.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit

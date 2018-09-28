@@ -1,0 +1,27 @@
+table.table
+  thead
+    tr
+      th Image
+      th Content
+      th Start Date
+      th End Date
+      th Actions
+
+  tbody
+    - promotion_posts.each do |post|
+      tr
+        td
+          - if post.image.present?
+            = link_to image_tag(post.image.url, style: "width: 100%"), post.image.url, target: "_blank"
+
+        td = post.description
+        td = post.start_date
+        td = post.end_date
+
+        td
+          = form_tag deploy_promotion_post_path(post), class: "btn-group-vertical" do
+            = link_to 'Add to Queue', select_queue_promotion_post_path(post), class: "btn btn-default"
+            = link_to 'Distribute to Offices', select_people_promotion_post_path(post), class: "btn btn-default"
+            = submit_tag "Post Now", class: "btn btn-default"
+            = link_to 'Edit', [:edit, post], class: "btn btn-default"
+            = link_to 'Delete', post, method: :delete, data: { confirm: "Are you sure?", disable_with: "Deleting" }, class: "btn btn-default"

@@ -1,0 +1,4 @@
+= simple_form_for(@facebook_connected_account) do |f|
+  = f.error_notification
+  = f.association :profile_page, collection: current_user.profile_pages.only_facebook.where.not(id: current_user.facebook_connected_accounts.pluck(:profile_page_id))
+  = f.button :submit

@@ -1,0 +1,33 @@
+= render 'agents/header'
+
+table.table
+  thead
+    tr
+      th Name
+      th Phone
+      th Email
+      th Postcode
+      th Message
+      th Agent
+      th Property
+      th
+      th
+      th
+
+  tbody
+    - @enquiries.each do |enquiry|
+      tr
+        td = enquiry.name
+        td = enquiry.phone
+        td = enquiry.email
+        td = enquiry.postcode
+        td = enquiry.message
+        td = enquiry.agent
+        td = enquiry.property
+        td = link_to 'Show', enquiry
+        td = link_to 'Edit', edit_enquiry_path(enquiry)
+        td = link_to 'Delete', enquiry, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Enquiry', new_enquiry_path

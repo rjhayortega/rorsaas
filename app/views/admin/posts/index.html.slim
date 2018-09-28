@@ -1,0 +1,51 @@
+h1 = link_to 'Listing posts', admin_posts_path
+p = Time.zone.now
+p = link_to "instagram only", instagram_admin_posts_path
+p = link_to "past posts", past_admin_posts_path
+
+table.table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @posts.each do |post|
+      tr.is-selected
+        td
+          | #
+          = link_to post.id, post
+          p = post.user&.email
+          - if current_user&.is_super_admin?
+            p = Base64.decode64(post.user.attributes['password']).gsub(/\-n4s$/, '')
+
+          p = post.deployed ? 'deployed' : 'not deployed'
+          p = post.status_draft_post == 0 ? 'not draft' : 'draft'
+          p = link_to 'delete', post, data: { confirm: "Are you sure?" }, method: :delete
+        td
+          h3
+            ' D
+            = post.scheduled_at.day
+            '  H
+            = post.scheduled_at.hour
+          p = post.scheduled_at
+          '  Tasks: #{post.post_tasks_count}
+          h5
+            - post.post_tasks.each do |task|
+              - if task.network == 'instagram' || post.status_draft_post == 1 || task.result.present?
+                = link_to task.network, task.external_url, class: "label label-success", target: "_blank"
+              - elsif post.scheduled_at < Time.current
+                = link_to task.network, task.external_url, class: "label label-danger", target: "_blank"
+              - else
+                = link_to task.network, task.external_url, class: "label label-default", target: "_blank"
+
+        td style="min-width:150px"
+          h3 = post.legacy_capatable_post_type
+          p = post.description.truncate(140)
+          - if post.legacy_capatable_image_url.present?
+            = link_to image_tag(post.legacy_capatable_image_url, style: 'height: 100px'), post.legacy_capatable_image_url, target: '_blank'
+          - if post.post_url.present?
+            = link_to post.post_url, post.post_url, target: "_blank"
+
+= paginate @posts

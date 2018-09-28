@@ -1,0 +1,67 @@
+
+
+<%= form_tag social_remove_path, method: "get" do %>
+  <div class="panel_block">
+    <div class="panel panel-default panel--first">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-user"></i> Accounts Connected </h3>
+      </div>
+      <!-- class="mCustomScrollbar"  profile_set_right -->
+      <div class="panel-body mCustomScrollbar" style="width:100%; height: 28vh; overflow: auto;">
+        <ul class="list-unstyled profilelist">
+
+          <% if @profiles.present? %>
+            <% @profiles.each do |profile| %>
+              <li>
+                <i class="fa fa-<%= profile.network %> pull-left" style="color: #007bb6;"></i>
+                <%= profile.fname %>&nbsp;<%= profile.lname %>
+                <%#= check_box_tag "profiles[]", value: "", class: "pull-right checked_profile" %>
+                <input type="checkbox" name="" class="pull-right checked_profile_<%= profile.id %>" value="<%= profile.id %>" />
+              </li>
+
+            <% end %>
+          <% else %>
+            <li>Not yet connected</li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-user"></i> Pages Connected </h3>
+      </div>
+      <!-- class="mCustomScrollbar"  profile_set_right -->
+      <div class="panel-body mCustomScrollbar" style="width:100%; height: 28vh; overflow: auto;">
+        <ul class="list-unstyled profilelist">
+
+          <% if @pages.present? %>
+            <% @pages.each do |page| %>
+              <li>
+                <i class="fa fa-<%= page.network %> pull-left" style="color: #007bb6;"></i>
+                <%= page.page_name %>
+                <input type="checkbox" name="" class="pull-right checked_page_<%= page.id %>" />
+              </li>
+
+            <% end %>
+          <% else %>
+            <li>Not yet connected</li>
+          <% end %>
+        </ul>
+        
+      </div>
+      <div class="two-btn col-sm-12">
+        <a data-turbolinks="false" class="btn btn-add custom-btn col-sm-6" href="javascript:void(0)" onclick="validate_add();">Add More</a>
+        <input type="submit" class="btn btn-add custom-btn col-sm-6" value="Remove" data-turbolinks="false" />
+
+        <!-- <a  href="#" class="btn btn-add custom-btn col-sm-6" >Remove</a> -->
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="current_plan form-group">
+  <label for="profile_current_plan">Current Plan:</label>
+  <input type="text" name="" class="form-control" id="profile_current_plan" value="FREE PLAN" disabled="disabled" />
+  <a data-turbolinks="false" data-toggle="modal" class="btn btn-primary plan-btn form-control" data-target="#add_account_modal" onclick="change_plan();">Upgrade Plan</a>
+
+</div>

@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Photo:
+  = @agent.photo
+p
+  strong Name:
+  = @agent.name
+p
+  strong Email:
+  = @agent.email
+p
+  strong Phone:
+  = @agent.phone
+
+= link_to 'Edit', edit_agent_path(@agent)
+'  |
+= link_to 'Back', agents_path

@@ -1,0 +1,59 @@
+div class="add_post_block clearfix"
+  div class="col-sm-8"
+    h3 id="calendar_event_ttl" style="margin: 0;" POST DETAILS
+  div class="col-sm-4"
+    = link_to 'Add Post', "/posts/new?scheduled_at=#{@posts.last.scheduled_at.strftime('%Y-%m-%d %H:%M %p')}", class: "btn-round btn-red" if @posts.first.scheduled_at.strftime('%Y-%m-%d') > Time.current.strftime('%Y-%m-%d')
+h4 id="calendar_event_date" class="side-lines" = @posts.first.scheduled_at.strftime("%A #{@posts.first.scheduled_at.day.ordinalize} %B %Y")
+div class="event_block"
+  h3 id="hide_this" style="margin: 0px; color: rgb(21, 21, 21); display: none;" POSTS
+
+  ul#calendar_event.list-unstyled.event_block_list
+    - @posts.each do |post|
+      h3.text-center.side-lines style="font-size:16px;" Scheduled for #{post.scheduled_at.strftime("%H:%M")} UTC
+      /span.text-center.side-lines style="font-size:16px;" class="local_time" #{post.scheduled_at.strftime("%H:%M")}
+      li
+        .instagram_preview
+          .row
+            .col-lg-12.mystyle
+              p
+                - if post.image.present?
+                  = image_tag post.image.url, style: "width:100%; height:auto;border-radius:5px;"
+                - elsif post.other_image_url.present?
+                  = image_tag post.other_image_url, style: "width:100%; height:auto;border-radius:5px;"
+
+              .row
+                .col-lg-12.mystyle
+                  h4 style=("padding-left: 5px;")
+                    .dropdown.ddcus
+                      button.btn.btn-link.btn-sm.dropdown-toggle data-toggle="dropdown" type="button"
+                        | Actions
+                        span.caret
+                      ul.dropdown-menu
+                        / li
+                        /   a data-target="#add_comments" data-toggle="modal" href="#" onclick="set_postid(295601,'10155549578908746')" Add Comments
+                        - if post.scheduled_at > Time.current
+                          li
+                            = link_to "Edit Post", edit_post_path(post)
+                        li
+                          = link_to "Delete Post", post, method: :delete, data: { confirm: "Are you sure?" }, remote: false
+                  hr
+              div style=("padding: 5px 5px 15px 5px;") = post.description
+              .fb_profile_pit
+                - post.profiles.each do |profile|
+                  - if profile.image.present?
+                    img.pull-left src=profile.image
+                  strong = profile.name
+                  br
+                  i.fa class="fa-#{profile.network}"
+                  br
+
+                - post.pages.each do |profile|
+                  - if profile.image.present?
+                    img.pull-left src=profile.image
+                  strong = profile.name
+                  br
+                  i.fa class="fa-#{profile.network}"
+                  br
+              div style="padding:10px;"
+          .row
+            .col-lg-12.mystyle

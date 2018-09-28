@@ -1,0 +1,27 @@
+p
+  strong User:
+  = @facebook_connected_account.user
+p
+  strong Verified:
+  = @facebook_connected_account.verified
+p
+  strong Profile page:
+  = @facebook_connected_account.profile_page
+p
+  strong Facebook ad account:
+  = @facebook_connected_account.facebook_ad_account_id
+
+
+table.table
+  thead
+    tr
+      th Campaign Name
+
+  tbody
+    - @facebook_connected_account.facebook_ads.each do |ad|
+      tr
+        td = link_to ad.campaign_name, ad
+
+= link_to 'Edit', edit_facebook_connected_account_path(@facebook_connected_account)
+'  |
+= link_to 'Back', facebook_connected_accounts_path

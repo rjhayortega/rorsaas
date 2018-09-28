@@ -1,0 +1,28 @@
+h1 Listing profiles
+
+table.table
+  thead
+    tr
+      th
+      th
+      th
+      th
+      th
+
+  tbody
+    - @profiles.each do |profile|
+      tr
+        td = profile.id
+        td = profile.network
+        td
+          | #
+          = link_to profile&.user&.id || 'MISSING!!', profile
+          '
+          = profile&.user&.email
+        td = link_to 'Show', profile
+        td = link_to 'Edit', edit_profile_path(profile)
+        td = link_to 'Delete', profile, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Profile', new_profile_path

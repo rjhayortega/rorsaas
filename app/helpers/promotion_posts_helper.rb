@@ -1,0 +1,2 @@
+module PromotionPostsHelper
+end

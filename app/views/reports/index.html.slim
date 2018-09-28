@@ -1,0 +1,65 @@
+h1 Campaign statistics
+
+.row
+  .col-md-6
+    h2.table-header
+      = render 'mailchimp_logo'
+      ' MailChimp
+
+    table.table style='text-align: right'
+      thead
+        tr
+          th Name
+          th Sent
+          th Open
+          th Open rate
+          th Clicks
+          th Click rate
+          th Send Time
+
+      tbody
+        - @campaigns.each do |compaign|
+          tr
+            td style="width: 20%" = compaign['settings']['title']
+            td = compaign['emails_sent']
+            td = compaign.dig('report_summary', 'unique_opens')
+            td = number_to_percentage 100*(compaign.dig('report_summary', 'open_rate') || 0), precision: 0
+            td = compaign.dig('report_summary', 'clicks')
+            td = number_to_percentage 100*(compaign.dig('report_summary', 'click_rate') || 0), precision: 0
+            td = Time.parse(compaign['send_time']).strftime('%Y-%m-%d %H:%M')
+
+  .col-md-6
+    h2.table-header
+      = render 'facebook_logo'
+      ' Facebook
+
+    table.table
+      thead
+        tr
+          th Campaign
+          th Spend
+          th Impressions
+          th Clicks
+
+      - @fb_campaigns.each do |campaign|
+        tr
+          td = @graph.get_connections(campaign['id'], nil, fields: 'id,name,objective')['name']
+          - data = @graph.get_connections(campaign['id'], 'insights', fields: "['spend','clicks','impressions']", time_range: @fb_time_range)[0]
+          - if data
+            td = data['spend']
+            td = data['impressions']
+            td = data['clicks']
+          - else
+            td
+            td
+            td
+
+        / tr
+        /   td
+        /     = @graph.get_connections(campaign['id'], 'insights', fields: "['spend','clicks','impressions']", time_increment: 1)
+
+h1.table-header
+  = image_tag 'google-logo.png'
+  ' Google Analytics
+
+= render 'google_dashboard'

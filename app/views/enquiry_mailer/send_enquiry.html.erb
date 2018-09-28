@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <table style="border: 1px solid #CCC;" width="100%">
+    	<tr>
+    		<td colspan="3" align="center" style="padding: 20px; background-color: #0076b6;">
+    			<img src="<%= @protocol + @host %>/logo.png" width="120" height="60">
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" align="center" style="padding: 20px; color: #999; font-family: sans-serif; font-size: 18px;">
+    			A new lead has been captured from <a href="<%= @user[:page_url] %>"><%= @user[:page_name] %></a>
+    		</td>
+    	</tr>
+    	<tr style="font-family: sans-serif; font-size: 20px;">
+    		<td colspan="3" style="padding: 10px;">Landing Page Details</td>
+    	</tr>
+    	<tr style="font-family: sans-serif; font-size: 16px;">
+    		<td align="right" style="padding: 10px; background-color: #4c545a; font-size: 14px; color: white;">Page Name</td>
+    		<td colspan="2" style="background-color: #f0f0f0; padding: 10px;"><%= @user[:page_name] %></td>
+    	</tr>
+    	<tr style="font-family: sans-serif; font-size: 20px;">
+    		<td colspan="3" style="padding: 10px;">Submitted Lead Data</td>
+    	</tr>
+    	<tr style="font-family: sans-serif; font-size: 16px;">
+    		<td align="right" style="padding: 10px; background-color: #4c545a; font-size: 14px; color: white;">Name</td>
+    		<td colspan="2" style="background-color: #f0f0f0; padding: 10px;"><%= @user[:name] %></td>
+    	</tr>
+    	<tr style="font-family: sans-serif; font-size: 16px;">
+    		<td align="right" style="padding: 10px; background-color: #4c545a; font-size: 14px; color: white;">Phone</td>
+    		<td colspan="2" style="background-color: #f0f0f0; padding: 10px;"><%= @user[:phone] %></td>
+    	</tr>
+    	<tr style="font-family: sans-serif; font-size: 16px;">
+    		<td align="right" style="padding: 10px; background-color: #4c545a; font-size: 14px; color: white;">PostCode</td>
+    		<td colspan="2" style="background-color: #f0f0f0; padding: 10px;"><%= @user[:postCode] %></td>
+    	</tr>
+    	<tr style="font-family: sans-serif; font-size: 16px;">
+    		<td align="right" style="padding: 10px; background-color: #4c545a; font-size: 14px; color: white;">Message</td>
+    		<td colspan="2" style="background-color: #f0f0f0; padding: 10px;"><%= @user[:message] %></td>
+    	</tr>
+    	<tr style="font-family: sans-serif; font-size: 16px;">
+    		<td align="right" style="padding: 10px; background-color: #4c545a; font-size: 14px; color: white;">Questions</td>
+    		<td style="background-color: #f0f0f0; padding: 10px;">
+    			<p><%= @user[:chk_price_guide] %></p>
+    			<p><%= @user[:chk_property_size] %></p>
+    			<p><%= @user[:chk_inspection_times] %></p>
+    			<p><%= @user[:chk_strata_fees] %></p>
+    		</td>
+    	</tr>
+    </table>
+    </p>
+  </body>
+</html>

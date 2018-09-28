@@ -1,0 +1,133 @@
+<%= form_tag('/enquiries/send_enquiry_info', id: 'send_enquiry_info', remote: true) do %>
+  <input name='OrderNo' type='hidden' value='16837436' />
+  <input name='ItemNo' type='hidden' value='1' />
+  <input name='person[page_url]' type='hidden' value='<%= request.original_url %>' />
+  <% if @property %>
+    <input name='person[page_name]' type='hidden' value='<%= @property.name %>' />
+  <% end %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="InputName">Name</label>
+      </div>
+      <div class="col-sm-8">
+        <sup class="brand-primary">*</sup>
+        <span class="icon-alert icon-mandatory-name" data-toggle="tooltip" data-placement="left" title="Mandatory" style="display:none;">
+          <i class="fa fa-exclamation-triangle brand-primary" aria-hidden="true"></i>
+        </span>
+        <input name='person[name]' type="text" class="form-control clearAfterSend" id="InputName-side" placeholder="-" data-pt-event-type="21" required />
+      </div>
+    </div>
+  </div>
+  <div class="form-group required">
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="InputEmail">Phone</label>
+      </div>
+      <div class="col-sm-8">
+        <input name='person[phone]' type="text" class="form-control clearAfterSend" id="InputPhone-side" placeholder="-" data-pt-event-type="21" />
+      </div>
+    </div>
+  </div>
+  <div class="form-group required">
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="InputEmail">Email</label>
+      </div>
+      <div class="col-sm-8">
+        <sup class="brand-primary">*</sup>
+        <span class="icon-alert icon-mandatory-email" data-toggle="tooltip" data-placement="left" title="Mandatory" style="display:none;">
+          <i class="fa fa-exclamation-triangle brand-primary" aria-hidden="true"></i>
+        </span>
+        <input name='person[email]' type="email" class="form-control clearAfterSend" id="InputEmail-side" placeholder="-" data-pt-event-type="21" required />
+      </div>
+    </div>
+  </div>
+  <div class="form-group required">
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="InputEmail">Postcode</label>
+      </div>
+      <div class="col-sm-8">
+        <input name="person[postCode]" type="text" class="form-control clearAfterSend" id="InputPostcode-side" placeholder="-" data-pt-event-type="21" />
+      </div>
+    </div>
+  </div>
+  <div class="form-group required">
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="InputEmail">Message</label>
+      </div>
+      <div class="col-sm-8">
+        <textarea name='person[message]' type="email" class="form-control clearAfterSend" id="TextareaMessage-side" placeholder="My message" data-pt-event-type="21">Hi, Please send me more information about this property.</textarea>
+      </div>
+    </div>
+  </div>
+  <div class="box-checkbox">
+    <div class="row">
+      <div class="col-xs-6">
+        <label class="control">
+          <input name='person[chk_price_guide]' type="checkbox" class="check-checkbox" data-pt-event-type="9" value="Could I have a price guide ?">
+          <div class="control-indicator">
+            <div class="content-table">
+              <div class="content-vertical middle">
+                <span class="icon icon-Bag brand-primary light-color"></span>
+                Could I have a price guide ?
+              </div>
+            </div>
+          </div>
+        </label>
+      </div>
+      <div class="col-xs-6">
+        <label class="control">
+          <input name='person[chk_property_size]' type="checkbox" class="check-checkbox" data-pt-event-type="9" value="What is the property size ?">
+          <div class="control-indicator">
+            <div class="content-table">
+              <div class="content-vertical middle">
+                <span class="icon icon-FullScreen brand-primary light-color"></span>
+                What is the property size ?
+              </div>
+            </div>
+          </div>
+        </label>
+      </div>
+      <div class="col-xs-6">
+        <label class="control">
+          <input name='person[chk_inspection_times]' type="checkbox" class="check-checkbox" data-pt-event-type="9" value="When are the inspection times ?">
+          <div class="control-indicator">
+            <div class="content-table">
+              <div class="content-vertical middle">
+                <span class="icon icon-Exit brand-primary light-color"></span>
+                When are the inspection times ?
+              </div>
+            </div>
+          </div>
+        </label>
+      </div>
+      <div class="col-xs-6">
+        <label class="control">
+          <input name='person[chk_strata_fees]' type="checkbox" class="check-checkbox" data-pt-event-type="9" value="What are the strata fees / levies / rates ?">
+          <div class="control-indicator">
+            <div class="content-table">
+              <div class="content-vertical middle">
+                <span class="icon icon-Tools brand-primary light-color"></span>
+                What are the strata fees / levies / rates ?
+              </div>
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+  <% if @property %>
+    <button type="submit" class="btn btn-primary btn-block light-color action-sendEnquiry">
+    Send Enquiry
+    <span class="icon icon-Plaine"></span>
+    </button>
+  <% else %>
+    <button type="button" class="btn btn-primary btn-block light-color action-sendEnquiry">
+    Send Enquiry
+    <span class="icon icon-Plaine"></span>
+    </button>
+  <% end %>
+<% end %>

@@ -1,0 +1,97 @@
+.col-sm-12.darker-bg style=("padding: 15px;background-color:#F9F9F9;")
+  - if flash[:error]
+    div class="alert alert-danger" role="alert"
+      span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"
+      = flash[:error]
+
+  = simple_form_for @post, class: "form", id: "postfrm", remote: false do |f|
+    = f.hidden_field :utc_offset
+    = f.hidden_field :queue_list_id
+    = f.hidden_field :status_draft_post
+
+    .col-sm-8
+      - unless @queue_list.present?
+        .form-group
+          .row
+            .col-sm-6
+              h5 ADDED ACCOUNTS
+            .col-sm-6 align="right"
+              - current_user.profiles.each do |profile|
+                = label_tag dom_id(profile), class: "js-choose-account account-chooser account-chooser--#{profile.network}" do
+                  = check_box_tag "post[profile_ids][]", profile.id, profile.id.in?(@post.profile_ids), id: dom_id(profile), class: "check_boxes optional", data: {network: profile.network, name: profile.name, image: profile.image, handle: profile.handle}
+                  = image_tag profile.profile_pic_with_default, title: profile.name, alt: profile.name
+              - profile_pages = current_user.profile_pages.where(connect: 1, page_type: '').includes(:user).order(id: :desc)
+              - profile_pages.each do |page|
+                = label_tag dom_id(page), class: "js-choose-account account-chooser account-chooser--#{page.network}" do
+                  = check_box_tag "post[page_ids][]", page.id, page.id.in?(@post.page_ids), id: dom_id(page), class: "check_boxes optional", data: {network: page.network, name: page.name, image: page.image, handle: page.handle}
+                  = image_tag page.profile_pic_with_default, title: page.name
+
+      .form-group
+        .row
+          .col-md-9.text-left
+            h5 CONTENT
+            = f.text_area :description, class: "form-control borderless", placeholder: "Message", rows: "5", style: "width:100%;"
+
+            h5 ADD LINK
+            .row
+              .col-md-9
+                = f.text_field :post_url, placeholder: 'http://www.example.com', class: 'form-control borderless'
+              .col-md-3 align="right"
+                button class="link-red link-btn js-shorten-url" Shorten
+            .row
+              .col-sm-4
+              .col-sm-8 align="right"
+                = button_tag class: "link-red link-btn js-preview-post" do
+                  span Show in preview 
+
+            - unless @queue_list.present?
+              = f.input :scheduled_at, as: :string, placeholder: "Time", input_html: { class: 'js-datetimepicker', value: @init_scheduled_at }
+            = f.hidden_field :timezone_str, id: 'client_timezone_str'
+
+          .col-sm-3
+            h5 ADD IMAGE
+            .row class="relative"
+              = f.label :image, class: "col-sm-12 instant-file-select" do
+                = f.file_field :image, class: "js-quick-preview-fileupload js-post-main-image", accept: "image/*"
+                = image_tag @post&.image&.url || "image_ph.png"
+                a class="delete_image hide" href="javascript:;" style="position: absolute; z-index: 10; bottom: 0;" data-elem="image" data-page="post"
+                  i class="fa fa-trash-o" style="font-size: 20px; color: grey;"
+
+            .row
+              - (1..3).each do |index|
+                = f.label "subimage#{index}".to_sym, class: "col-sm-4 instant-file-select" do
+                  = f.file_field "subimage#{index}".to_sym, class: "js-quick-preview-fileupload", accept: "image/*"
+                  = image_tag "image_ph.png"
+                  a class="delete_image sub hide" href="javascript:;" style="display: block; margin-top: 5px;" data-elem="subimage#{index}" data-page="post"
+                    i class="fa fa-trash-o" style="font-size: 20px; color: grey;"
+
+            p style=("color: #9E9E9E;")
+              b style=("color: #111111;")
+                i Edit image
+              br
+              span style=("font-size: 0.8em;") You can have 2-4 max set image for your post.
+
+    .col-sm-4
+      .form-group
+        h5 style=("margin-top: 0;") POST PREVIEW
+        = render 'preview_section'
+
+    .form-group.col-sm-12 style=("margin-top: 80px;")
+      .col-sm-4
+
+      .col-sm-4 align="right"
+        - if @init_scheduled_at
+          = button_tag class: "link-red link-btn" do
+            span Schedule
+            '
+            i class="fa fa-arrow-right"
+        - else
+          = button_tag class: "link-red link-btn" do
+            span = determine_submit_button_text(@post, @queue_list)
+            '
+            i class="fa fa-arrow-right"
+
+      / .col-sm-4 align="center"
+      /   a.link-black.h4 href="/content_calendar.php" target="_blank"  SEE SCHEDULES
+      /   br
+      /   = link_to 'SEE DRAFTS', draft_posts_path, class: "link-black h4"

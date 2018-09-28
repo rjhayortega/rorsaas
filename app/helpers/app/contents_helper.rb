@@ -1,0 +1,2 @@
+module App::ContentsHelper
+end

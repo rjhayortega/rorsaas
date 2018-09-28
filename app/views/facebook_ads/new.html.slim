@@ -1,0 +1,10 @@
+h1 New HouseQ Ad
+
+- unless @facebook_connected_account.verified
+  div class="alert alert-warning" role="alert"
+    ' Your Facebook Ad Account are been verifying, you may create ads now but they will only be take effect after verified by our Ads Manager
+
+
+== render 'form'
+
+= link_to 'Back', @facebook_connected_account

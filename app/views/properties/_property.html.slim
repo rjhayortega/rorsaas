@@ -1,0 +1,19 @@
+.card.col-lg-3
+  - if property.images.any?
+    .card-cover
+      = link_to image_tag(property.images.first.file.url, class: 'imgPortfolio', style: 'width: 100%'), property
+
+  .card-content
+    h4.headline--center
+      = link_to property.name, property
+    = link_to 'EDIT PAGE', edit_property_path(property), class: "btn-round btn-red"
+    = link_to 'DELETE PAGE', property, method: :delete, data: { confirm: "Are you sure?" }, class: "btn-round btn-red"
+
+  .card-stats
+    .property-stats-traffic
+      .property-stats-number = property.visits_count
+      .property-stats-subtitle VISITS
+
+    .property-stats-shares
+      .property-stats-number = property.shares_count
+      .property-stats-subtitle SHARES

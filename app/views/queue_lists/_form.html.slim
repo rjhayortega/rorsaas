@@ -1,0 +1,24 @@
+= form_for @queue_list do |f|
+  - if @queue_list.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@queue_list.errors.count, "error")} prohibited this queue_list from being saved:"
+      ul
+        - @queue_list.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :activity
+    = f.text_field :activity
+  .field
+    = f.label :image
+    = f.text_field :image
+  .field
+    = f.label :started_on
+    = f.date_select :started_on
+  .field
+    = f.label :user
+    = f.text_field :user
+  .actions = f.submit

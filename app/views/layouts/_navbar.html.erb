@@ -1,0 +1,41 @@
+<div class="menu_wrap">
+  <nav class="navbar navbar-default" id="navbar-whole">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a data-turbolinks="false" class="navbar-brand logo" href="/">
+          <%= image_tag "logo.png", id: "logo_class" %>
+        </a>
+      </div>
+
+      <% if user_signed_in? %>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right settingnav">
+            <li class="plan-name">
+              <b>PLAN:</b> <span class="plan-name-plan"><%= current_user.plan_name %></span>
+            </li>
+            <li class="dropdown">
+              <a data-turbolinks="false" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.first_name %>
+                <%= image_tag current_user.profile_picture.thumb.url || "feature_icon6.png", class: "home_right_icon1", size: '45x45' %>
+              </a>
+              <ul class="dropdown-menu dropdown-menu_right" id="header-dropdown">
+                <li><%= link_to "Account Settings", edit_user_path, data: { turbolinks: false } %></li>
+                <li><a data-turbolinks="false" href="javascript:void(0)" onclick="validate_add();">Add Accounts</a></li>
+                <li><a data-turbolinks="false" href="#" onclick="change_plan();">Change Plans</a></li>
+                <li>
+                  <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { turbolinks: false } %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </nav>
+</div>

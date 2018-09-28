@@ -1,0 +1,9 @@
+= simple_form_for(@property_image) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :file
+    = f.association :property
+
+  .form-actions
+    = f.button :submit

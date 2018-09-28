@@ -1,0 +1,30 @@
+p#notice = notice
+
+p
+  strong Description:
+  = @promotion_post.description
+p
+  strong Post url:
+  = @promotion_post.post_url
+p
+  strong Utc offset:
+  = @promotion_post.utc_offset
+p
+  strong Image:
+  = @promotion_post.image
+p
+  strong Subimage1:
+  = @promotion_post.subimage1
+p
+  strong Subimage2:
+  = @promotion_post.subimage2
+p
+  strong Subimage3:
+  = @promotion_post.subimage3
+p
+  strong author:
+  = @promotion_post.author
+
+= link_to 'Edit', edit_promotion_post_path(@promotion_post)
+'  |
+= link_to 'Back', promotion_posts_path

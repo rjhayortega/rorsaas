@@ -1,0 +1,23 @@
+h1 Listing property_images
+
+table
+  thead
+    tr
+      th File
+      th Property
+      th
+      th
+      th
+
+  tbody
+    - @property_images.each do |property_image|
+      tr
+        td = property_image.file
+        td = property_image.property
+        td = link_to 'Show', property_image
+        td = link_to 'Edit', edit_property_image_path(property_image)
+        td = link_to 'Delete', property_image, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Property image', new_property_image_path

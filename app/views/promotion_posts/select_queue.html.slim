@@ -1,0 +1,17 @@
+h1
+  ' Select a queue for Post
+  = link_to "##{@post.id} - #{@post.description.truncate(20)}", @post
+
+table.table
+  thead
+    tr
+      th Queue Name
+      th Posts
+      th Action
+
+  tbody
+     - @queues.each do |queue|
+      tr
+        td = link_to queue.name, queue
+        td = queue.queue_posts_count
+        td = button_to "Add to this queue", send_to_queue_promotion_post_path(@post, queue_list_id: queue.id), class: "btn btn-default"

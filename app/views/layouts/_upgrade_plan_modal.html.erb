@@ -1,0 +1,60 @@
+<button id="upgradeBtn" style="display:none;" type="button" class="js-open-modal btn btn-info btn-lg" data-target="#upgradeModal"></button>
+<div id="upgradeModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Upgrade Plan</h4>
+      </div>
+      <div class=" row modal-body">
+        <div class="col-sm-12">
+          <h3 class="text-center">Please pick a plan from the following:</h3>
+        </div>
+        <div class="col-sm-12 opts">
+          <div class="col-sm-4 opt_panel opt_panel--pricing" onclick="select_opt('standard');" id="opt_standard">
+            <div class="text-center">
+              <h3>STANDARD</h3>
+              <h1 style="margin-bottom:2px;font-size:3em;">$25/mo</h1>
+              <p>Billed Monthly</p>
+            </div>
+            <ul>
+              <li>Post and Schedule to Instagram, Facebook, LinkedIn and Twitter</li>
+              <li>Up to 8 Social Media Accounts</li>
+              <li>LiveChat and Email Support</li>
+              <li>Upload Unlimited Properties</li>
+            </ul>
+          </div>
+          <div class="col-sm-4 opt_panel opt_panel--pricing" onclick="select_opt('plus');" id="opt_plus">
+            <div class="text-center">
+              <h3>PLUS</h3>
+              <h1 style="margin-bottom:2px;font-size:3em;">$100/mo</h1>
+              <p>Billed Monthly</p>
+            </div>
+            <ul>
+              <li>Everything in Standard, plus:</li>
+              <li>Integration with My Desktop</li>
+              <li>Dedicated Account Manager</li>
+            </ul>
+          </div>
+          <div class="col-sm-4 opt_panel opt_panel--pricing" onclick="select_opt('office');" id="opt_office">
+            <div class="text-center">
+              <h3>OFFICE</h3>
+              <h1 style="margin-bottom:2px;font-size:3em;">$300/mo</h1>
+              <p>Billed Monthly</p>
+            </div>
+            <ul>
+              <li>Everything in Plus</li>
+              <li>User Access for Agents individually, as well as Office</li>
+              <li>Up to 25 Social Media Accounts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" id="plan_selected" name="plan_selected">
+        <button type="button" class="btn btn-primary" onClick="upgrade_plan();">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

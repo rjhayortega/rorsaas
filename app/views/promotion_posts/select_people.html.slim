@@ -1,0 +1,33 @@
+h1
+  ' Send to select offices
+  = link_to "##{@post.id} - #{@post.description.truncate(20)}", @post
+
+= form_tag send_to_people_promotion_post_path(@post) do
+  table.table
+    thead
+      tr
+        th Office Name
+        th Members
+
+    tbody
+      - @offices.each do |office|
+        tr
+          td
+            = label_tag do
+              = check_box_tag 'office_ids[]', office.id, false, class: "js-checkbox-togglee"
+              = office.name
+
+          td
+            = office.users_count
+            '  /
+            = office.maximum_users_count
+
+    tfoot
+      tr
+        td
+          = label_tag do
+            = check_box_tag 'send_to_all_offices', 'yes', false, class: "js-checkbox-toggler"
+            ' Send to all offices
+        td
+
+  = submit_tag :submit, class: "btn btn-default"

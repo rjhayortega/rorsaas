@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-AU" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="description" content="12 Kingfisher Drive - <%= @property.name %>" />
+    <meta name="keywords" content="<%= @property.address %>, <%= @property.address2 %>, Century 21 Beachside &amp; Lakes, photos, floorplans, images, inspections, videos, estate, real estate, sale, rent, campaigntrack " />
+    <title><%= @property.address %>, <%= @property.address2 %></title>
+    <link rel="icon" type="image/png" sizes="32x32" href="//propertyshowcase.com/Content/Property/11/img/favicon-32x32.png" />
+    <!-- fonts google -->
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700' />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' />
+    <!-- styles generate from /sass -->
+    <%= stylesheet_link_tag    'propertyshowcase', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <%= javascript_include_tag 'propertyshowcase', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <!-- If brand-primary is light > add class "light-color-template" in <body> -->
+  <!-- If the logo is white > add class "logo-black-template" in <body> -->
+  <body data-spy="scroll" class="menu-off  ">
+    <input id='OrderNo' type='hidden' value='16837436' />
+    <input id='ItemNo' type='hidden' value='1' />
+
+    <%= hidden_field_tag :photos, PostsController.render('property_images/index.json', assigns: { property_images: @property.images }), id: 'photosData' %>
+    <input type="hidden" id="floorplansData" value='[]' />
+    <input type="hidden" id="timeZone" value="Australia-Sydney" />
+    <input type="hidden" id="secondaryColour" value="#000000" />
+    <input type="hidden" id="upwDomain" value="//propertyshowcase.com" />
+    <input type="hidden" id="themeNo" value="1" />
+    <input type="hidden" id="iframeCalendarAddress" value="12 Kingfisher Drive Semaphore Park" />
+    <nav class="nav-overlay off">
+      <% if @property.images.first&.file&.present? %>
+        <div class="bg-under" style="background-image: url(<%= @property.images.first.file.url %>)"></div>
+      <% end %>
+      <div class="bg-radial"></div>
+      <div class="content">
+        <div class="content-table">
+          <div class="content-vertical middle">
+            <div class="row">
+              <div class="text-center">
+                <a href="#" title="Visit website campaigntrack" class="link-logo">
+                  <img src="<%= @property.logo.url %>" class="img-responsive logo-agency" alt="logo <%= @property.name %>" data-pt-event-type="12" />
+                </a>
+
+                <ul class="nav navbar-nav row" id="nav-mobile">
+                  <li class="col-xxs-6 col-xs-4">
+                    <a href="#gallery" class="page-scroll" data-showfullgallery-index=&quot;0&quot; data-pt-event-type="3">
+                      <span class="ico-nav">
+                        <span class="notification bg-primary light-color"><%= @property.images.count %></span>
+                        <span class="icon icon-CompactCamera"></span>
+                      </span>
+                      <span class="text-nav">photos</span>
+                    </a>
+                  </li>
+                  <li class="col-xxs-6 col-xs-4">
+                    <a href="#section-about" class="page-scroll" data-pt-event-type="3">
+                      <span class="ico-nav">
+                        <span class="icon icon-ClipboardText"></span>
+                      </span>
+                      <span class="text-nav">about</span>
+                    </a>
+                  </li>
+                  <li class="col-xxs-6 col-xs-4">
+                    <a href="#section-location" class="page-scroll" data-pt-event-type="3">
+                      <span class="ico-nav">
+                        <span class="icon icon-WorldWide"></span>
+                      </span>
+                      <span class="text-nav">location</span>
+                    </a>
+                  </li>
+                  <li class="col-xxs-6 col-xs-4">
+                    <a href="#section-enquiry" class="page-scroll" data-pt-event-type="3">
+                      <span class="ico-nav">
+                        <span class="icon icon-MessageRight"></span>
+                      </span>
+                      <span class="text-nav">enquire</span>
+                    </a>
+                  </li>
+                </ul>
+
+                <ul class="social" itemtype="http://schema.org/Organization">
+                  <li id="share-this-property-pos"><a data-track-visit="property" data-property-id="<%= @property.id %>" id="share-this-property" data-pt-event-type="14" class="google" href="https://plus.google.com/share?url=<%= property_url(@property) %>" title="Share on Google Plus" target="_blank" rel="publisher" itemprop=“sameAs”><i class="fa fa-google" aria-hidden="true"></i></a></li>
+                  <li><a data-track-visit="property" data-property-id="<%= @property.id %>" data-pt-event-type="14" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=<%= property_url(@property) %>" title="Share on Linkedin" target="_blank" itemprop=“sameAs”><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                  <li><a data-track-visit="property" data-property-id="<%= @property.id %>" data-pt-event-type="14" class="twitter" href="https://twitter.com/home?status=<%= property_url(@property) %>" title="Share on Twitter" target="_blank" itemprop=“sameAs”><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a data-track-visit="property" data-property-id="<%= @property.id %>" data-pt-event-type="14" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=<%= property_url(@property) %>" title="Share on Facebook" target="_blank" itemprop=“sameAs”><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                </ul>
+                <h5>
+                <small><%= @property.address %></small>
+                <%= @property.address2 %>
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <nav class="navbar off">
+      <div class="nav-shadow"></div>
+      <div class="fix-gap"></div>
+      <div class="nav-content">
+        <div class="container">
+          <!-- responsive menu action icon > MD -->
+          <div class="navbar-header visible-xs visible-sm pull-right">
+            <div id="hamburger" data-pt-event-type="25">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="navbar-header pull-left">
+              <a class="navbar-brand link-logo" href="http://http://www.century21.com.au/semaphore/" target="_blank" title="Visit Website" itemscope itemtype="http://schema.org/LocalBusiness">
+                <div class="content-table">
+                  <div class="content-vertical middle">
+                    <img src="<%= @property.logo.url %>" class="img-responsive logo-agency" alt="logo <%= @property.name %>" data-pt-event-type="12" />
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- Seo -->
+            <meta itemprop="Name brand here">
+            <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="hidden">
+              <meta itemprop="streetAddress">
+              <meta itemprop="addressLocality">
+              <meta itemprop="addressRegion">
+              <meta itemprop="postalCode">
+            </div>
+            <!-- // Seo -->
+            <div class="inner-content">
+              <div class="col-md-8 hidden-xs hidden-sm">
+                <ul class="nav navbar-nav" id="nav-desktop">
+                  <li><a href="#gallery" class="page-scroll" data-showfullgallery-index=&quot;0&quot;>Gallery</a></li>
+                  <li><a href="#section-about" class="page-scroll" data-pt-event-type="3">About</a></li>
+                  <li><a href="#section-location" class="page-scroll" data-pt-event-type="3">Location</a></li>
+
+                  <!-- <li><a href="#section-inspection" class="page-scroll" data-pt-event-type="3">Inspections</a></li> -->
+                </ul>
+              </div>
+              <div class="col-md-4 hidden-xs hidden-sm">
+                <!-- SOCIAL -->
+                <ul class="social pull-right" itemtype="http://schema.org/Organization">
+                  <li class="link-social-modal"><a data-track-visit="property" data-property-id="<%= @property.id %>" data-toggle="modal" data-target="#modal-social" title="Share this property" data-pt-event-type="23"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                  <li><a data-track-visit="property" data-property-id="<%= @property.id %>" data-pt-event-type="14" class="google" href="https://plus.google.com/share?url=<%= property_url(@property) %>" title="Share on Google Plus" target="_blank" rel="publisher" itemprop=“sameAs”><i class="fa fa-google" aria-hidden="true"></i></a></li>
+                  <li><a data-track-visit="property" data-property-id="<%= @property.id %>" data-pt-event-type="14" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=<%= property_url(@property) %>" title="Share on Linkedin" target="_blank" itemprop=“sameAs”><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                  <li><a data-track-visit="property" data-property-id="<%= @property.id %>" data-pt-event-type="14" class="twitter" href="https://twitter.com/home?status=<%= property_url(@property) %>" title="Share on Twitter" target="_blank" itemprop=“sameAs”><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a data-track-visit="property" data-property-id="<%= @property.id %>" data-pt-event-type="14" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=<%= property_url(@property) %>" title="Share on Facebook" target="_blank" itemprop=“sameAs”><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li id="share-this-property-pos"><span id="share-this-property">Share this property:</span></li>
+                </ul>
+                <!-- // SOCIAL -->
+              </div>
+            </div>
+            <!-- NAV PRIMARY -->
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header role="banner">
+      <div id="gallery">
+        <% if @property.images.first&.file&.present? %>
+          <div class="item-gallery">
+            <picture>
+              <img src="<%= @property.images.first.file.url %>" />
+            </picture>
+            <span class="overlay">
+              <span class="gradient-linear-top"></span>
+              <span class="gradient-radial"></span>
+              <span class="gradient-linear-bottom"></span>
+            </span>
+          </div>
+        <% end %>
+
+        <div class="item-gallery template">
+          <picture>
+            <source class='itemGalleryImgSource-xlarge' media="(min-width:1201px)" />
+            <source class='itemGalleryImgSource-large' media="(min-width:992px)" />
+            <source class='itemGalleryImgSource-medium' media="(min-width:768px)" />
+            <source class='itemGalleryImgSource-small' media="(min-width:480px)" />
+            <source class='itemGalleryImgSource-xsmall' />
+            <img class='itemGalleryImgSource-default' />
+          </picture>
+          <span class="overlay">
+            <span class="gradient-linear-top"></span>
+            <span class="gradient-radial"></span>
+            <span class="gradient-linear-bottom"></span>
+          </span>
+        </div>
+      </div>
+<!--       <footer>
+        <div class="overlay hidden-xs hidden-xxs"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-8 col-xxl-9">
+              <div class="row">
+                <div class="col-sm-7 hidden-xs hidden-xxs">
+                  <div class="box-date">
+                    <div class="div part-title">
+                      <span>Next</span>inspection
+                    </div>
+                    <div class="div part-date">
+                      <time datetime="2012-02-11T16:24:02" itemprop="date">
+                      <span>Sun - 9 Jul 2017</span>
+                      <em>
+                      03:15PM
+                      <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                      04:00PM
+                      </em>
+                      </time>
+                    </div>
+                    <a class="btn btn-primary page-scroll light-color" href="#section-inspection" data-pt-event-type="13">More</a>
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div class="pull-left list-icon-header">
+                    <ul>
+                      <li>
+                        <a href="#" title="See photos" class="fade-in one" data-showfullgallery-index="0">
+                          <span class="notification bg-primary light-color">
+                            <%= @property.images.count %>
+                          </span>
+                          <span class="icon icon-CompactCamera"></span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer> -->
+    </header>
+    <div id="bar-title">
+      <div class="container">
+        <div class="row">
+          <div class="col-xxs-6 col-xs-6 col-sm-8 col-xxl-9">
+            <div class="row">
+              <div class="col-sm-6 col-sm-push-6">
+                <div class="content-bar-title">
+                  <div class="content-table">
+                    <div class="content-vertical middle">
+                      <div class="clearfix"></div>
+                      <ul class="list-unstyled specificity">
+                        <li class="ellipsis">
+                          <strong class="light-color brand-primary"><%= @property.beds %></strong>
+                          <span>beds</span>
+                        </li>
+                        <li class="ellipsis">
+                          <strong class="light-color brand-primary"><%= @property.bath %></strong>
+                          <span>bath</span>
+                        </li>
+                        <li class="ellipsis">
+                          <strong class="light-color brand-primary"><%= @property.parking %></strong>
+                          <span data-parking="<%= @property.parking %>">parking</span>
+                        </li>
+                      </ul>
+                      <div class="clearfix"></div>
+                      <span class="label label-radius label-primary light-color hidden-xs">
+                        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                        For <%= @property.is_rent ? "Rent" : "Sale" %>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix visible-xs"></div>
+              <div class="col-sm-6 col-sm-pull-6">
+                <div class="content-bar-title" itemtype="http://schema.org/SingleFamilyResidence">
+                  <div class="content-table">
+                    <div class="content-vertical middle">
+                      <h1 itemprop="name">
+                        <small><%= @property.address %></small>
+                        <%= @property.address2 %>
+                      </h1>
+
+                      <% if @property.price %>
+                        <span class="price hidden-xs">
+                          <i class="fa fa-tag" aria-hidden="true"></i>
+                          Price guide :
+                          <strong class="brand-primary light-color">
+                              <%= number_to_currency @property.price %>
+                          </strong>
+                        </span>
+                      <% end %>
+
+                      <div class="clearfix visible-xs"></div>
+                      <div class="visible-xs">
+                        <span class="label label-radius label-primary light-color">
+                          <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                          For <%= @property.is_rent ? "Rent" : "Sale" %>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xxs-6 col-xs-6 col-sm-4 col-xxl-3">
+            <aside id="aside" class="box box-field">
+              <%= render @property.agent if @property.agent.present? %>
+
+              <div class="content hidden-xs">
+                <h2>
+                  Send enquiry
+                </h2>
+
+                <%= render 'enquiries/form' %>
+              </div>
+            </aside>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+<!--         <span class="price visible-xs">
+          <span class="content">
+            <i class="fa fa-tag" aria-hidden="true"></i>
+            Price guide :
+            <strong class="brand-primary light-color">429000</strong>
+          </span>
+        </span>
+        <div class="box-date box-date-inspection visible-xs">
+          <div class="col-xs-4 part-title">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <div class="content-table">
+              <div class="content-vertical middle">
+                <strong>Next</strong>
+                <span>inspection</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-8 part-date">
+            <div class="content-table">
+              <div class="content-vertical middle">
+                Sun - 09 Jul 2017
+                <ul class="schedule text-center">
+                  <li>
+                    <span class="brand-success">03:15PM</span>
+                    >
+                    <span class="brand-warning">04:00PM</span>
+                  </li>
+                </ul>
+                <span class="timing">
+                  <span>in</span>
+                  <div class="content-table">
+                    <div class="content-vertical middle">
+                      2 days
+                    </div>
+                  </div>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>  -->
+      </div>
+    </div>
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-xxl-9">
+            <section id="section-about">
+              <h2>
+              <%= @property.name %>
+              </h2>
+              <div class="text-content">
+                <div class="comment more">
+                  <%= simple_format @property.description %>
+                </div>
+              </div>
+            </section>
+            <section id="section-location">
+              <style>
+              #mapContainer {
+              position: relative;
+              background-color: #eee;
+              }
+              #mapNoScrollDiv {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              z-index: 1;
+              /*background:red;*/
+              }
+              html.mapEnabled #mapNoScrollDiv {
+              display: none;
+              }
+              #mapBox {
+              height: 300px;
+              }
+              #mapFrame {
+              width: 100%;
+              height: 100%;
+              border: 0px none;
+              }
+              #mapDiv {
+              width: 100%;
+              height: 100%;
+              }
+              #mapFooter {
+              display: none;
+              }
+              /* IF DEVICE > $SCREEN MD (991px) */
+              @media (min-width: 992px) {
+              #mapBox {
+              height: 400px;
+              }
+              }
+              /* IF DEVICE > $SCREEN LG (1200px) */
+              @media (min-width: 1200px) {
+              #mapBox {
+              height: 500px;
+              }
+              }
+              /* map full view in mobile size */
+              @media (max-width: 767px) {
+              html.mapEnabled #mapContainer {
+              position: fixed;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%; /* this line covers the viewport */
+              z-index: 999999999;
+              }
+              html.mapEnabled #mapBox {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 60px;
+              height: auto;
+              }
+              html.mapEnabled #mapFooter {
+              display: block;
+              position: absolute;
+              bottom: 0;
+              }
+              }
+              </style>
+              <input type="hidden" id="mapAddress" value="<%= @property.address %>, <%= @property.address2 %> SA 5019, Australia" />
+              <h2>Location</h2>
+              <div class="full-xs">
+                <div id="mapContainer">
+                  <div id="mapNoScrollDiv" data-pt-event-type="22"></div>
+                  <div id='mapBox'>
+                    <iframe id='mapFrame' src='https://www.google.com/maps/embed/v1/place?key=AIzaSyB-B9Zh_JHxjB_xNiyiuzsIOS6Gi1DD2SA&q=<%= "#{@property.address}, #{@property.address2}, #{@property.country_name}" %>' frameborder="0"></iframe>
+                  </div>
+                  <div id="mapFooter" class="bar-bottom">
+                    <div class="container">
+                      <div class="pull-left thumbnail-footer">
+                        <figure>
+                          <img src="https://d2fqxnswxd1pta.cloudfront.net/ctimage/336145993615495366684284160656/28987549crop200x150.jpg" alt="photo property thumbnail" />
+                        </figure>
+                      </div>
+                      <div class="btn-group pull-right btn-icon" role="group">
+                        <a id="mapClose" title="Close" class="btn btn-default close-map">
+                          <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                      <div class="inner-content ellipsis">
+                        <a id="mapGalleryButton" class="page-scroll" href="#gallery">
+                          <h5 class="ellipsis">
+                          <small class="ellipsis"><%= @property.address %></small>
+                          <%= @property.address2 %>
+                          </h5>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+<!--             <section id="section-inspection">
+              <h2>Inspections</h2>
+              <div class="full-xs">
+                <ul class="list-group">
+                  <li class="list-group-item col-md-6">
+                    <time datetime=" 2017-09-07" itemprop="date" class="pull-left">
+                    <div class="pull-left hidden-xxs">
+                      <span class="day day-word text-right">
+                        Sun
+                      </span>
+                    </div>
+                    <div class="pull-left">
+                      <span class="day day-number brand-primary light-color">
+                        09
+                      </span>
+                    </div>
+                    <div class="pull-left">
+                      <span class="month brand-primary light-color">
+                        Jul
+                      </span>
+                      <span class="year">
+                        2017
+                      </span>
+                    </div>
+                    </time>
+                    <button type="button" title="Add to calendar" class="addToCalendar addtocalendar-lg-btn pull-right" data-toggle="modal" data-target="#calendarModal" data-width="600" data-height="350" data-event-start-date="636352101000000000" data-event-end-date="636352128000000000">
+                    <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                    </button>
+                    <div class="pull-center">
+                      <div class="pull-right">
+                        <ul class="schedule pull-right text-center">
+                          <li>
+                            <span class="brand-success">03:15PM</span><br />
+                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            <span class="brand-warning">04:00PM</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </li>
+                </ul>
+              </div>
+            </section> -->
+            <section id="section-enquiry" class="visible-xs">
+              <h2>
+              Send enquiry
+              </h2>
+              <form id='enquiryForm-mobile'>
+                <input name='OrderNo' type='hidden' value='16837436' />
+                <input name='ItemNo' type='hidden' value='1' />
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <label for="InputName">Name</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <sup class="brand-primary">*</sup>
+                      <span class="icon-alert icon-mandatory-name" data-toggle="tooltip" data-placement="left" title="Mandatory" style="display:none;">
+                        <i class="fa fa-exclamation-triangle brand-primary" aria-hidden="true"></i>
+                      </span>
+                      <input name='name' type="text" class="form-control clearAfterSend" id="InputName-side" placeholder="-" data-pt-event-type="21" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <label for="InputEmail">Phone</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <input name='phone' type="text" class="form-control clearAfterSend" id="InputPhone-side" placeholder="-" data-pt-event-type="21" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <label for="InputEmail">Email</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <sup class="brand-primary">*</sup>
+                      <span class="icon-alert icon-mandatory-email" data-toggle="tooltip" data-placement="left" title="Mandatory" style="display:none;">
+                        <i class="fa fa-exclamation-triangle brand-primary" aria-hidden="true"></i>
+                      </span>
+                      <input name='email' type="email" class="form-control clearAfterSend" id="InputEmail-side" placeholder="-" data-pt-event-type="21" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <label for="InputEmail">Postcode</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <input name="postCode" type="text" class="form-control clearAfterSend" id="InputPostcode-side" placeholder="-" data-pt-event-type="21" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <label for="InputEmail">Message</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <textarea name='message' type="email" class="form-control clearAfterSend" id="TextareaMessage-side" placeholder="My message" data-pt-event-type="21">Hi, Please send me more information about this property.</textarea>
+                    </div>
+                  </div>
+                </div>
+<!--                 <div class="box-checkbox">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <label class="control">
+                        <input name='chk_price_guide' type="checkbox" class="check-checkbox" data-pt-event-type="9">
+                        <div class="control-indicator">
+                          <div class="content-table">
+                            <div class="content-vertical middle">
+                              <span class="icon icon-Bag brand-primary light-color"></span>
+                              Could I have a price guide ?
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="col-xs-6">
+                      <label class="control">
+                        <input name='chk_property_size' type="checkbox" class="check-checkbox" data-pt-event-type="9">
+                        <div class="control-indicator">
+                          <div class="content-table">
+                            <div class="content-vertical middle">
+                              <span class="icon icon-FullScreen brand-primary light-color"></span>
+                              What is the property size ?
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="col-xs-6">
+                      <label class="control">
+                        <input name='chk_inspection_times' type="checkbox" class="check-checkbox" data-pt-event-type="9">
+                        <div class="control-indicator">
+                          <div class="content-table">
+                            <div class="content-vertical middle">
+                              <span class="icon icon-Exit brand-primary light-color"></span>
+                              When are the inspection times ?
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="col-xs-6">
+                      <label class="control">
+                        <input name='chk_strata_fees' type="checkbox" class="check-checkbox" data-pt-event-type="9">
+                        <div class="control-indicator">
+                          <div class="content-table">
+                            <div class="content-vertical middle">
+                              <span class="icon icon-Tools brand-primary light-color"></span>
+                              What are the strata fees / levies / rates ?
+                            </div>
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div> -->
+                <button data-toggle="modal" data-target="#modal-form" type="button" class="btn btn-primary btn-block light-color action-sendEnquiry">
+                Send Enquiry
+                <span class="icon icon-Plaine"></span>
+                </button>
+              </form>
+            </section>
+            </div><!-- // col -->
+            </div><!-- // row -->
+            </div><!-- // container -->
+          </main>
+<!--           <div id="inspection-div" class="bar-inspection hidden-xs">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-8 col-xs-12">
+                  <div class="row">
+                    <div class="col-xs-4 col-md-3 col-inspection title-inspection affix-fade-in one">
+                      <div class="content-table">
+                        <div class="content-vertical middle">
+                          Next inspection
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-5 col-sm-4 col-md-5 col-inspection date-inspection affix-fade-in two">
+                      <div class="content-table">
+                        <div class="content-vertical middle light-color">
+                          <span class="icon icon-Agenda"></span>
+                          <span>Sun - 9 Jul</span> -
+                          <div class="clearfix visible-xs visible-sm"></div>
+                          <span class="icon icon-Time"></span>
+                          03:15PM > 04:00PM
+                          <button type="button" title="Add to calendar" class="addToCalendar addtocalendar-sm-btn" data-toggle="modal" data-target="#calendarModal" data-width="600" data-height="350" data-event-start-date="636352101000000000" data-event-end-date="636352128000000000">
+                          <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-4 col-inspection link-inspection affix-fade-in three">
+                      <div class="content-table">
+                        <div class="content-vertical middle">
+                          <a href="#section-inspection" class="page-scroll light-color">
+                            <span class="icon icon-Eye hidden-xxs"></span>
+                            See all
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div id="footer-bar" class="bar-bottom bar-footer">
+            <div class="container">
+              <div class="pull-right visible-xs">
+                <div class="btn-group" role="group">
+                  <span class="title-btn">
+                    <strong class="ellipsis">Call</strong>
+                  </span>
+                  <div class="btn-call pull-left" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                    <a type="button" class="btn btn-primary light-color" href="tel:0419 032 042" itemprop="telephone" data-pt-event-type="4">
+                      <div itemprop="seller" itemtype="http://schema.org/Person">
+                        <div itemprop="name">
+                          <span class="ellipsis">Rosalie</span>
+                          <strong class="ellipsis">Grickage</strong>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="pull-left thumbnail-footer">
+                <a href="#gallery" data-showfullgallery-index="0">
+                  <figure>
+                    <img src="https://d2fqxnswxd1pta.cloudfront.net/ctimage/336145993615495366684284160656/28987549crop200x150.jpg" alt="photo property thumbnail" />
+                  </figure>
+                </a>
+                <a href="#gallery" class="hidden-xs" data-showfullgallery-index="1">
+                  <figure>
+                    <img src="https://d2fqxnswxd1pta.cloudfront.net/ctimage/336145993615495366684284160656/28987684crop200x150.jpg" alt="photo property thumbnail" />
+                  </figure>
+                </a>
+                <a href="#gallery" class="hidden-xs" data-showfullgallery-index="2">
+                  <figure>
+                    <img src="https://d2fqxnswxd1pta.cloudfront.net/ctimage/336145993615495366684284160656/28987553crop200x150.jpg" alt="photo property thumbnail" />
+                  </figure>
+                </a>
+              </div>
+              <div class="btn-group pull-right btn-icon hidden-xs" role="group">
+                <a href="#" title="See photos" class="btn btn-default" data-showfullgallery-index="0">
+                  <span class="icon icon-CompactCamera"></span>
+                </a>
+                <a data-toggle="modal" data-target="#modal-social" title="Share this property" class="btn btn-default" data-pt-event-type="23">
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div class="inner-content ellipsis">
+                <a class="page-scroll" href="#gallery">
+                  <h5 class="ellipsis">
+                    <small class="ellipsis"><%= @property.address %></small>
+                    <%= @property.address2 %>
+                  </h5>
+                </a>
+                <ul class="list-unstyled specificity">
+                  <li class="ellipsis">
+                    <strong><%= @property.beds %></strong>
+                    <span>beds</span>
+                  </li>
+                  <li class="ellipsis">
+                    <strong><%= @property.bath %></strong>
+                    <span>bath</span>
+                  </li>
+                  <li class="ellipsis">
+                    <strong><%= @property.parking %></strong>
+                    <span data-parking="2">parking</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <footer role="contentinfo" id="footer-hero">
+            <div class="container text-center">
+
+<!--               <a class="btn" href="http://www.century21.com.au/semaphore/" title="See more properties" target="_blank" data-pt-event-type="7">
+                see more properties
+              </a>
+
+ -->              <div class="clearfix"></div>
+              <a href="http://http://www.century21.com.au/semaphore/" title="Visit website" class="link-logo">
+                <img src="<%= @property.logo.url %>" class="img-responsive logo-agency" alt="logo" data-pt-event-type="12" />
+              </a>
+              <div class="row">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+                  <p class="text-center">
+                    © <%= @property.name %> <%= Date.current.year %><br />
+                    <%= @property.address %>, <%= @property.address2 %>, <%= @property.country_name %>
+                  </p>
+                </div>
+              </div>
+              <h5>
+              <span>Powered by</span>
+              <a href="http://houseq.io" title="Visit houseq.io" target="_blank">
+                <%= image_tag "knackmap-logo.png", class: "", alt: "logo knackmap" %>
+              </a>
+              </h5>
+            </div>
+          </footer>
+          <!-- MODAL MORE INFORMATIONS AGENT 1 -->
+<!--           <div class="modal modal-agent fade " id="modal-agent-1" tabindex="-1" role="dialog">
+            <div class="vertical-alignment-helper">
+              <div class="modal-dialog vertical-align-center">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <figure>
+                        <div class='headshotDiv' style='background-image:url(https://files.campaigntrack.com/ctimage/306649290513540650433289057590/15801803box300x300.jpg);'></div>
+                        <img src='https://files.campaigntrack.com/ctimage/306649290513540650433289057590/15801803box300x300.jpg' class="img-seo-handle" alt="Photo of Rosalie Grickage">
+                      </figure>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-pt-event-type="17">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h4 class="modal-title">
+                      <span>About</span> Rosalie Grickage
+                      </h4>
+                      <div class="row" itemscope itemtype="http://schema.org/Person">
+                        <ul>
+                          <li class="col-sm-6 text-center">
+                            <h5>
+                            <i class="fa fa-envelope-o brand-primary light-color" aria-hidden="true"></i>
+                            <span>Email</span>
+                            </h5>
+                            <a href="mailto:rosalie@semaphorerealestate.net.au" class="light-color" data-pt-event-type="19">
+                              <span data-clickreveal="rosalie@semaphorerealestate.net.au" data-clickreveal-event-type="20">rosalie@ ...</span>
+                            </a>
+                          </li>
+                          <li class="col-sm-6 text-center">
+                            <h5>
+                            <i class="fa fa-mobile brand-primary light-color" aria-hidden="true"></i> Phone
+                            </h5>
+                            <a href="tel:0419 032 042" itemprop="telephone" class="light-color" data-pt-event-type="4">
+                              <span data-clickreveal="0419 032 042" data-clickreveal-event-type="11">0419 032 ...</span>
+                            </a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+ -->          <!-- MODAL MORE INFORMATIONS AGENT 2 -->
+<!--           <div class="modal modal-agent fade" id="modal-agent-2" tabindex="-1" role="dialog">
+            <div class="vertical-alignment-helper">
+              <div class="modal-dialog vertical-align-center">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <figure>
+                      </figure>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-pt-event-type="17">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h4 class="modal-title">
+                      <span>About</span>
+                      </h4>
+                      <div class="row" itemscope itemtype="http://schema.org/Person">
+                        <ul>
+                          <li class="col-sm-6 text-center">
+                            <h5>
+                            <i class="fa fa-envelope-o brand-primary light-color" aria-hidden="true"></i>
+                            <span>Email</span>
+                            </h5>
+                            <a href="mailto:" class="light-color" data-pt-event-type="19">
+                              <span data-clickreveal="" data-clickreveal-event-type="20"> ...</span>
+                            </a>
+                          </li>
+                          <li class="col-sm-6 text-center">
+                            <h5>
+                            <i class="fa fa-mobile brand-primary light-color" aria-hidden="true"></i> Phone
+                            </h5>
+                            <a href="tel:" itemprop="telephone" class="light-color" data-pt-event-type="4">
+                              <span data-clickreveal="" data-clickreveal-event-type="11"> ...</span>
+                            </a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!-- MODAL SOCIAL -->
+          <div class="modal fade" id="modal-social" tabindex="-1" role="dialog">
+            <div class="vertical-alignment-helper">
+              <div class="modal-dialog vertical-align-center">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <figure>
+                        <img src="https://d2fqxnswxd1pta.cloudfront.net/ctimage/336145993615495366684284160656/28987549crop300x300.jpg" class="img-responsive img-circle " alt="84 Cormier Pike Apt. 054 - Balgowlah heights">
+                      </figure>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h4 class="modal-title">
+                      <span>Share this property </span>
+                      <small itemprop="name">
+                      <%= @property.address %> - <%= @property.address2 %>
+                      </small>
+                      </h4>
+                      <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1">
+                          <div class="row">
+                            <ul class="text-center">
+                              <li class="col-sm-3 col-xs-6">
+                                <a data-track-visit="property" data-property-id="<%= @property.id %>" data-pt-event-type="14" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=<%= property_url(@property) %>" title="Share on Facebook" target="_blank" itemprop=“sameAs”>
+                                  <i class="fa fa-facebook brand-facebook" aria-hidden="true"></i>
+                                  Facebook
+                                </a>
+                              </li>
+                              <li class="col-sm-3 col-xs-6">
+                                <a data-track-visit="property" data-property-id="<%= @property.id %>" data-pt-event-type="14" class="twitter" href="https://twitter.com/home?status=<%= property_url(@property) %>" title="Share on Twitter" target="_blank" itemprop=“sameAs”>
+                                  <i class="fa fa-twitter brand-twitter" aria-hidden="true"></i>
+                                  Twitter
+                                </a>
+                              </li>
+                              <li class="col-sm-3 col-xs-6">
+                                <a data-track-visit="property" data-property-id="<%= @property.id %>" data-pt-event-type="14" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=<%= property_url(@property) %>" title="Share on Linkedin" target="_blank" itemprop=“sameAs”>
+                                  <i class="fa fa-linkedin brand-linkedin" aria-hidden="true"></i>
+                                  Linked In
+                                </a>
+                              </li>
+                              <li class="col-sm-3 col-xs-6">
+                                <a data-track-visit="property" data-property-id="<%= @property.id %>" data-pt-event-type="14" class="google" href="https://plus.google.com/share?url=<%= property_url(@property) %>" title="Share on Google Plus" target="_blank" rel="publisher" itemprop=“sameAs”>
+                                  <i class="fa fa-google brand-googleplus" aria-hidden="true"></i>
+                                  Google Plus
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- MODAL FORM ERROR -->
+          <div class="modal fade modal-form" id="modal-form-error" tabindex="-1" role="dialog">
+            <div class="vertical-alignment-helper">
+              <div class="modal-dialog modal-sm vertical-align-center">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <i class="fa fa-exclamation-triangle ico-hero brand-danger" aria-hidden="true"></i>
+                      <h3>
+                      This message has not been sent. <br />
+                      There may be something you need to change.
+                      <small>Please try again</small>
+                      </h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                      <div class="label-group text-center">
+                        <span class="label label-radius label-border label-danger label-danger-name" style="display:none">
+                          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Name
+                        </span>
+                        <span class="label label-radius label-border label-danger label-danger-email" style="display:none">
+                          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Email
+                        </span>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- MODAL FORM SUCCESS -->
+          <div class="modal fade modal-form" id="modal-form-success" tabindex="-1" role="dialog">
+            <div class="vertical-alignment-helper">
+              <div class="modal-dialog modal-sm vertical-align-center">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <span class="icon icon-Plaine ico-hero brand-success"></span>
+                      <h3>
+                      Thank you!
+                      <small>your enquiry has been sent successfully!</small>
+                      </h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id='fullGallery'>
+            <div id='fullGallery_Photoswipe'>
+              <!-- Root element of PhotoSwipe. Must have class pswp. -->
+              <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                <!-- Background of PhotoSwipe. It's a separate element as animating opacity is faster than rgba(). -->
+                <div class="pswp__bg"></div>
+                <!-- Slides wrapper with overflow:hidden. -->
+                <div class="pswp__scroll-wrap">
+                  <!-- Container that holds slides.
+                  PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                  Don't modify these 3 pswp__item elements, data is added later on. -->
+                  <div class="pswp__container">
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                  </div>
+                  <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                  <div class="pswp__ui pswp__ui--hidden">
+                    <div class="pswp__top-bar">
+                      <!--  Controls are self-explanatory. Order can be changed. -->
+                      <div class="pswp__counter"></div>
+                      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                      <!-- <button class="pswp__button pswp__button--share" title="Share"></button> -->
+                      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                      <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                      <!-- element will get class pswp__preloader--active when preloader is running -->
+                      <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                          <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                      <div class="pswp__share-tooltip"></div>
+                    </div>
+                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                    <div class="pswp__caption">
+                      <div class="pswp__caption__center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id='thumbGalleryDiv'>
+              <ul>
+                <li class='thumbGalleryItem'></li>
+              </ul>
+            </div>
+          </div>
+          <!-- 3D VIDEO PHOTOSWIPE -->
+          <div id='threeD_vid'>
+            <div id='threeD_vid_Photoswipe'>
+              <!-- Root element of PhotoSwipe. Must have class pswp. -->
+              <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                <!-- Background of PhotoSwipe. It's a separate element as animating opacity is faster than rgba(). -->
+                <div class="pswp__bg"></div>
+                <!-- Slides wrapper with overflow:hidden. -->
+                <div class="pswp__scroll-wrap">
+                  <!-- Container that holds slides.
+                  PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                  Don't modify these 3 pswp__item elements, data is added later on. -->
+                  <div class="pswp__container">
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                  </div>
+                  <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                  <div class="pswp__ui pswp__ui--hidden">
+                    <div class="pswp__top-bar">
+                      <!--  Controls are self-explanatory. Order can be changed. -->
+                      <div class="pswp__counter"></div>
+                      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                      <!-- <button class="pswp__button pswp__button--share" title="Share"></button> -->
+                      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                      <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                      <!-- element will get class pswp__preloader--active when preloader is running -->
+                      <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                          <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                      <div class="pswp__share-tooltip"></div>
+                    </div>
+                    <div class="pswp__caption">
+                      <div class="pswp__caption__center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- DIAKRIT GALLERY -->
+          <div id='diakritGallery'>
+            <div id='diakritGallery_Photoswipe'>
+              <!-- Root element of PhotoSwipe. Must have class pswp. -->
+              <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                <!-- Background of PhotoSwipe. It's a separate element as animating opacity is faster than rgba(). -->
+                <div class="pswp__bg"></div>
+                <!-- Slides wrapper with overflow:hidden. -->
+                <div class="pswp__scroll-wrap">
+                  <!-- Container that holds slides.
+                  PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                  Don't modify these 3 pswp__item elements, data is added later on. -->
+                  <div class="pswp__container">
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                  </div>
+                  <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                  <div class="pswp__ui pswp__ui--hidden">
+                    <div class="pswp__top-bar">
+                      <!--  Controls are self-explanatory. Order can be changed. -->
+                      <div class="pswp__counter"></div>
+                      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                      <!-- <button class="pswp__button pswp__button--share" title="Share"></button> -->
+                      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                      <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                      <!-- element will get class pswp__preloader--active when preloader is running -->
+                      <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                          <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                      <div class="pswp__share-tooltip"></div>
+                    </div>
+                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                    <div class="pswp__caption">
+                      <div class="pswp__caption__center"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal modal-agent fade " id="calendarModal" tabindex="-1" role="dialog">
+            <div class="vertical-alignment-helper">
+              <div class="modal-dialog vertical-align-center">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <iframe id="calendar-iframe" frameborder="0"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="modal-docdownload" tabindex="-1" role="dialog">
+            <div class="vertical-alignment-helper">
+              <div class="modal-dialog vertical-align-center">
+                <div class="modal-dialog modal-md" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <div class="row">
+                        <div class="col-xs-2 col-sm-12">
+                          <i class="fa fa-lock ico-hero opacity-1" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-xs-10 col-sm-12">
+                          <h3>
+                          Before download,
+                          <br class="hidden-xs hidden-sm" /> please provide name and email:
+                          </h3>
+                        </div>
+                      </div>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div id='docdownload-alert' class="hide alert" role="alert">
+                        <strong>Please make sure all fields are not empty and have valid email format.</strong>
+                      </div>
+                      <form id='docdownload-form'>
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-xs-4">
+                              <label for="InputName">Name</label>
+                            </div>
+                            <div class="col-xs-8">
+                              <sup class="brand-primary">*</sup>
+                              <input name='name' type="text" class="form-control" placeholder="Name">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-xs-4">
+                              <label for="InputName">Email</label>
+                            </div>
+                            <div class="col-xs-8">
+                              <sup class="brand-primary">*</sup>
+                              <input name='email' type="email" class="form-control" placeholder="Email">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-xs-4">
+                              <label for="InputName">Phone</label>
+                            </div>
+                            <div class="col-xs-8">
+                              <input name='phone' type="tel" class="form-control" placeholder="Phone">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="pull-right">
+                          <a class="btn btn-black" data-dismiss="modal">Cancel</a>
+                          <a id='docdownload-submit' class="btn btn-primary">Download</a>
+                        </div>
+                        <div class="clearfix"></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </body>
+      </html>

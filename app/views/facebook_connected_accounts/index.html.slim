@@ -1,0 +1,37 @@
+h1 Facebook Ads
+
+table.table
+  thead
+    tr
+      th Profile page
+      th Verified
+      th
+      th
+
+  tbody
+    - @facebook_connected_accounts.each do |facebook_connected_account|
+      tr
+        td = link_to facebook_connected_account.profile_page.name, facebook_connected_account
+        td = facebook_connected_account.verified ? "Yes" : "No"
+        td = link_to "New ads", new_facebook_connected_account_facebook_ad_path(facebook_connected_account)
+        td = link_to 'Delete', facebook_connected_account, data: { confirm: 'Are you sure?' }, method: :delete
+
+table.table
+  thead
+    tr
+      th Facebook ads
+      th
+      th
+      th
+
+  tbody
+    - @facebook_ads.each do |facebook_ad|
+      tr
+        td = facebook_ad.facebook_connected_account.profile_page.name
+        td = link_to 'Show', facebook_ad
+        td = link_to 'Edit', edit_facebook_ad_path(facebook_ad)
+        td = link_to 'Delete', facebook_ad, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Facebook connected account', new_facebook_connected_account_path

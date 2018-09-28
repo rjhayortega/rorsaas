@@ -1,0 +1,8 @@
+//= require_tree ./propertyshowcase
+//= require fa-wrapper
+
+// @import "propertyshowcase/*";
+nav.navbar.off {
+  position: fixed;
+  z-index: 5;
+}

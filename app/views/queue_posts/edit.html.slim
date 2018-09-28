@@ -1,0 +1,53 @@
+h1 Editing Queue Post
+
+.col-sm-12.darker-bg style=("padding: 15px;background-color:#F9F9F9;")
+  = simple_form_for @queue_post, class: "form", id: "postfrm" do |f|
+    = f.hidden_field :utc_offset
+
+    .col-sm-8
+      .form-group
+        .row
+          .col-md-9.text-left
+            h5 CONTENT
+            = f.text_area :description, class: "form-control borderless", placeholder: "Message", rows: "5", style: "width:100%;"
+
+            h5 ADD LINK
+            .row
+              .col-md-9
+                = f.text_field :post_url, placeholder: 'http://www.example.com', class: 'form-control borderless'
+              .col-md-3 align="right"
+                = button_tag class: "link-red link-btn js-shorten-url" do
+                  span Shorten
+            .row
+              .col-sm-4
+              .col-sm-8 align="right"
+                = button_tag class: "link-red link-btn js-preview-post" do
+                  span Show in preview 
+          .col-sm-3
+            h5 ADD IMAGE
+            .row
+              = f.label :image, class: "col-sm-12 instant-file-select" do
+                = f.file_field :image, class: "js-quick-preview-fileupload js-post-main-image", accept: "image/*"
+                = image_tag ( f.object.try(:image).url || "image_ph.png" )
+                a class="delete_image hide" href="javascript:;" style="position: absolute; z-index: 10; bottom: 0;" data-elem="image" data-page="queue_post"
+                  i class="fa fa-trash-o" style="font-size: 20px; color: grey;"
+
+            .row
+              - (1..3).each do |index|
+              	= f.label "subimage#{index}".to_sym, class: "col-sm-4 instant-file-select" do
+                  = f.file_field "subimage#{index}".to_sym, class: "js-quick-preview-fileupload", accept: "image/*"
+                  = image_tag ( f.object.try("subimage#{index}").url || "image_ph.png" )
+                  a class="delete_image sub hide" href="javascript:;" style="display: block; margin-top: 5px;" data-elem="subimage#{index}" data-page="queue_post"
+                    i class="fa fa-trash-o" style="font-size: 20px; color: grey;"
+    .col-sm-4
+      .form-group
+        h5 style=("margin-top: 0;") POST PREVIEW
+        = render 'preview_section'
+    .form-group.col-sm-12 style=("margin-top: 80px;")
+      .col-sm-8
+      .col-sm-4 align="center"
+        = button_tag class: "link-red link-btn" do
+          span Save Queue Post
+          '
+          i class="fa fa-arrow-right"
+

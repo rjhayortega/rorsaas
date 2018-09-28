@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h2 style="margin-top:0;color:#424753;">Queue</h2>
+  </div>
+</div>
+<div class="row">
+  <%= render "create_new_queue_button", path: new_queue_list_path %>
+  <div class="col-lg-12">
+    <ol class="full_underline bcrumb" style="padding-left: 0;">
+      <li class="h5 active">BATCH SETUP</li>
+    </ol>
+  </div>
+  <!--<div class="col-lg-4" align="right">
+            <h5></h5>
+        </div>-->
+  <div class="col-lg-12">&nbsp;</div>
+  <div class="col-lg-12">
+    <h5>SETUP NEW QUEUE BATCH</h5>
+  </div>
+</div>
+
+<%= form_for QueueList.new, name: "postfrm", id: "postfrm", remote: false do |f| %>
+  <div class="row flex-parent">
+    <div class="row batch-setup-box">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12 text-left textdescription">
+              <h5>BATCH NAME </h5>
+              <input type="text" name="queue_list[name]" class="form-control borderless" placeholder="Category name of your queue batch">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <h5>BATCH IMAGE</h5>
+          <div class="row">
+            <label for="post_img" class="col-sm-6 text-center">
+              <%= f.file_field :image, id: "post_img", class: "hide js-quick-preview-fileupload", accept: "image/*", onchange: "PreviewImage();" %>
+              <%= image_tag "image_ph.png", style: "width:150px;cursor:pointer;" , id: "UploadFileField1_img" %>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-12" align="right">
+        <button type="submit" class="link-red link-btn">NEXT <span class="fa fa-arrow-right"></span></button>
+      </div>
+    </div>
+  </div>
+<% end %>

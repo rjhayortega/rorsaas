@@ -1,0 +1,24 @@
+.account-chooser
+  margin-left: 10px
+
+  img
+    width: 30px
+    border-radius: 50%
+    border: solid 3px transparent
+    margin-right: -6px
+
+  input[type=checkbox]
+    display: none
+    visibility: hidden
+
+.account-chooser--facebook > input[type=checkbox]:checked + img
+  border-color: #3c5a98
+
+.account-chooser--twitter > input[type=checkbox]:checked + img
+  border-color: #54abee
+
+.account-chooser--linkedin > input[type=checkbox]:checked + img
+  border-color: #007bb6
+
+.account-chooser--instagram > input[type=checkbox]:checked + img
+  border-color: #4D423C

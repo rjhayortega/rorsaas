@@ -1,0 +1,29 @@
+h1
+  = link_to @office.organisation.name, offices_path
+  '  >
+  = @office.name
+
+table.table
+  thead
+    tr
+      th Email
+      th First Name
+      th Last Name
+      th Action
+
+  tbody
+    - @office.users.each do |user|
+      tr
+        td = user.email
+        td = user.first_name
+        td = user.last_name
+        td
+          - if can? :hack_in, user
+            = button_to 'Sign in to this account', hack_in_user_path(user), class: "btn btn-default"
+
+          - if can? :destroy, user
+            = link_to 'Delete', user, method: :delete, class: "btn btn-default", data: { confirm: "Are you sure?", disable_with: "Deleting" }
+
+= link_to 'Edit', edit_office_path(@office)
+'  |
+= link_to 'New user', new_office_user_path(@office)

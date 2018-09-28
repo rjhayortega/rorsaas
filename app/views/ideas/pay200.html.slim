@@ -1,0 +1,12 @@
+#page-content-wrapper
+  h1 style="color: #0F0F0F;" Create Content
+
+  = form_tag pay200_path do
+    script{
+      src="https://checkout.stripe.com/checkout.js"
+      class="stripe-button"
+      data-key=Rails.application.secrets.stripe_key
+      data-image="//app.knackmap.com/images/paymet_logo.png"
+      data-name="knackmap.com"
+      data-description="<?=$plan?>"
+      data-amount="<?=($amount/100).'00'?>"}

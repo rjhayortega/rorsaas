@@ -1,0 +1,34 @@
+p
+  strong Description:
+  '
+  = @queue_post.description
+p
+  strong Image:
+  '
+  - if @queue_post.image.present?
+    = image_tag @queue_post.image
+  - elsif @queue_post.other_image_url.present?
+    = image_tag @queue_post.other_image_url
+p
+  strong Subimage1:
+  '
+  = image_tag @queue_post.subimage1 if @queue_post.subimage1
+p
+  strong Subimage2:
+  '
+  = image_tag @queue_post.subimage2 if @queue_post.subimage2
+p
+  strong Subimage3:
+  '
+  = image_tag @queue_post.subimage3 if @queue_post.subimage3
+
+table.table
+  - @queue_post.posts.order(:scheduled_at).each do |post|
+    tr
+      td
+        ' #
+        = link_to post.id, post
+
+      td = link_to post.scheduled_at, edit_post_path(post)
+
+= link_to "Delete Post", @queue_post, method: :delete, data: { confirm: "Are you sure?" }

@@ -1,0 +1,164 @@
+# == Schema Information
+#
+# Table name: hq_users
+#
+#  id                       :integer          not null, primary key
+#  first_name               :string(250)
+#  last_name                :string(250)
+#  email                    :string(250)
+#  user_type                :string(17)
+#  note                     :text(65535)
+#  password                 :string(250)
+#  address                  :text(65535)
+#  phone                    :string(250)
+#  country                  :string(250)
+#  state                    :string(250)
+#  city                     :string(250)
+#  job_title                :string(250)
+#  company                  :string(250)
+#  time_zone                :string(250)
+#  business_name            :string(250)
+#  assigning_tasks          :string(250)
+#  task_notification_emails :string(250)
+#  fb_audience_confirmation :string(250)
+#  fb_photo_upload          :string(250)
+#  profile_picture          :string(250)
+#  status                   :integer          default(0)
+#  fb_connect               :integer
+#  fb_id                    :string(300)
+#  access_token             :string(500)
+#  long_live_token          :string(500)
+#  twitter_connect          :integer
+#  twitter_id               :string(300)
+#  google_connect           :integer
+#  google_id                :string(300)
+#  linkedin_connect         :integer
+#  linkedin_id              :string(300)
+#  youtube_connect          :integer
+#  youtube_id               :string(250)
+#  date                     :date
+#  invite                   :integer
+#  response                 :integer
+#  login_time               :datetime
+#  paid                     :integer
+#  online                   :integer
+#  auto_report              :string(200)
+#  report_sent_count        :integer
+#  report_sent_date         :date
+#  report_send_date         :date
+#  current_plan             :string(200)
+#  plan_id                  :string(20)
+#  plan_amount              :string(200)
+#  expiry_date              :date
+#  expiry_notification_date :date
+#  purchase_date            :date
+#  last_login               :datetime
+#  login_location           :string(500)
+#  registered_date          :date
+#  payment_reminder_date    :date
+#  beta                     :integer
+#  cancel                   :integer
+#  extended_until           :string(50)
+#  username                 :string(55)
+#  Joeycrowd                :integer
+#  email_verify             :string(100)
+#  account_limit            :integer
+#  encrypted_password       :string(255)      default("")
+#  reset_password_token     :string(255)
+#  reset_password_sent_at   :datetime
+#  remember_created_at      :datetime
+#  sign_in_count            :integer          default(0)
+#  current_sign_in_at       :datetime
+#  last_sign_in_at          :datetime
+#  current_sign_in_ip       :string(255)
+#  last_sign_in_ip          :string(255)
+#  authentication_token     :string(255)
+#  timezone                 :string(255)
+#  organisation_id          :integer
+#  office_id                :integer
+#  stripe_customer_id       :string(255)
+#  is_new_design            :boolean          default(TRUE)
+#  bio                      :string(255)
+#
+
+one:
+  first_name: Hsu
+  last_name: Pan
+  email: knackmap.1up@0sg.net
+  password: KnV2c0hvenJBZzg2WXItbjRz
+  user_type: Premium Account
+  note: 'dummy'
+  address: 'dummy'
+  phone: 'dummy'
+  country: 'dummy'
+  state: 'dummy'
+  city: 'dummy'
+  job_title: 'dummy'
+  company: 'dummy'
+  time_zone: 'dummy'
+  business_name: 'dummy'
+  assigning_tasks: 'dummy'
+  task_notification_emails: 'dummy'
+  fb_audience_confirmation: 'dummy'
+  fb_photo_upload: 'dummy'
+  profile_picture: 'dummy'
+  status: 'dummy'
+  fb_connect: 'dummy'
+  fb_id: 'dummy'
+  access_token: 'dummy'
+  long_live_token: 'dummy'
+  twitter_connect: 'dummy'
+  twitter_id: 'dummy'
+  google_connect: 'dummy'
+  google_id: 'dummy'
+  linkedin_connect: 'dummy'
+  linkedin_id: 'dummy'
+  youtube_connect: 'dummy'
+  youtube_id: 'dummy'
+  date: '2017-1-1'
+  invite: 'dummy'
+  response: 'dummy'
+  paid: 'dummy'
+  online: 'dummy'
+  auto_report: 'dummy'
+  report_sent_count: 'dummy'
+  current_plan: 'dummy'
+  plan_id: 'dummy'
+  plan_amount: 'dummy'
+  login_location: 'dummy'
+  beta: 'dummy'
+  cancel: 'dummy'
+  extended_until: 'dummy'
+  username: 'dummy'
+  Joeycrowd: 'dummy'
+  email_verify: true
+  account_limit: 1
+  encrypted_password: 'dummy'
+  reset_password_token: 'dummy'
+  sign_in_count: 'dummy'
+  login_time: '2017-1-1 11:11'
+  report_sent_date: '2017-1-1 11:11'
+  report_send_date: '2017-1-1 11:11'
+  expiry_date: '2017-1-1 11:11'
+  expiry_notification_date: '2017-1-1 11:11'
+  purchase_date: '2017-1-1 11:11'
+  last_login: '2017-1-1 11:11'
+  registered_date: '2017-1-1 11:11'
+  payment_reminder_date: '2017-1-1 11:11'
+  authentication_token: CPxB8S5LuGMjRfomrs9Z
+
+
+admin:
+  email: admin@example.com
+  password: qwe123
+  user_type: Admin Account
+
+office:
+  email: office@example.com
+  password: qwe123
+  user_type: Office Account
+
+agent:
+  email: agent@example.com
+  password: qwe123
+  user_type: Agent Account

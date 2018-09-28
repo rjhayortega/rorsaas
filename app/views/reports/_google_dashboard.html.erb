@@ -1,0 +1,301 @@
+<div class="row">
+  <div class="col-md-3">
+    <section id="auth-button"></section>
+    <section id="view-selector"></section>
+
+    <h3>Users by hour of day</h3>
+    <section id="table_div"></section>
+  </div>
+
+  <div class="col-md-9">
+    <h3>Traffic</h3>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item active">
+        <a class="nav-link" id="users-tab-link" data-toggle="tab" href="#users-tab" role="tab" aria-controls="home" aria-expanded="true">Users</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" id="sessions-tab-link" data-toggle="tab" href="#sessions-tab" role="tab" aria-controls="profile">Sessions</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" id="bounce-rate-tab-link" data-toggle="tab" href="#bounce-rate-tab" role="tab" aria-controls="profile">Bounce Rate</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" id="session-duration-tab-link" data-toggle="tab" href="#session-duration-tab" role="tab" aria-controls="profile">Session Duration</a>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade in active" id="users-tab" role="tabpanel" aria-labelledby="home-tab">
+        <section id="users"></section>
+      </div>
+      <div class="tab-pane fade" id="sessions-tab" role="tabpanel" aria-labelledby="profile-tab">
+        <section id="sessions"></section>
+      </div>
+      <div class="tab-pane fade" id="bounce-rate-tab" role="tabpanel" aria-labelledby="dropdown1-tab">
+        <section id="bounce-rate"></section>
+      </div>
+      <div class="tab-pane fade" id="session-duration-tab" role="tabpanel" aria-labelledby="dropdown2-tab">
+        <section id="session-duration"></section>
+      </div>
+    </div>
+
+    <h3>Top pages</h3>
+    <section id="pages-table"></section>
+
+    <h3>Channels</h3>
+    <section id="sources-pie"></section>
+    <section id="sources-table"></section>
+  </div>
+</div>
+
+<script>
+google.load = google.load || google.charts.load;
+google.setOnLoadCallback = google.setOnLoadCallback || google.charts.setOnLoadCallback;
+
+//Loads the google analytics API
+(function (w, d, s, g, js, fs) {
+  //if ($('#googleCache').length > 0) return;
+  g = w.gapi || (w.gapi = {});
+  g.analytics = {
+      q: [],
+      ready: function (f) {
+          this.q.push(f);
+      }
+  };
+  js = d.createElement(s);
+  fs = d.getElementsByTagName(s)[0];
+  js.src = 'https://apis.google.com/js/platform.js';
+  js.id = "googleCache";
+  fs.parentNode.insertBefore(js, fs);
+  js.onload = function () {
+      g.load('analytics');
+  };
+}(window, document, 'script'));
+</script>
+
+<script>
+gapi.analytics.ready(function() {
+  var startOn = '<%= @start_on.strftime("%Y-%m-%d") %>'
+  var endOn = '<%= @end_on.strftime("%Y-%m-%d") %>'
+  // Step 3: Authorize the user.
+
+  var CLIENT_ID = '431913804768-kd322etgm1jsgegade9fcbilqsfvhcbf.apps.googleusercontent.com';
+
+  // gapi.analytics.auth.authorize({
+  //   'serverAuth': {
+  //     'access_token': 'ya29.ElnGBHbe2FYmAPaeJggCd11aVfJMMyWJT6UZF0rB1Z-mC0z8yMYCtrTrVEEy5RPof8sFZZ9vuCtFonOIGLumDQ5Nrt1dTr0zai4ddb4bA-0V0PQfjA7NVYdqqw'
+  //   }
+  // });
+
+  gapi.analytics.auth.authorize({
+    container: 'auth-button',
+    clientid: CLIENT_ID,
+  });
+
+  // Step 4: Create the view selector.
+
+  var viewSelector = new gapi.analytics.ViewSelector({
+    container: 'view-selector'
+  });
+
+  // Step 5: Create the timeline chart.
+
+  var users = new gapi.analytics.googleCharts.DataChart({
+    reportType: 'ga',
+    query: {
+      'dimensions': 'ga:date',
+      'metrics': 'ga:users',
+      'start-date': startOn,
+      'end-date': endOn,
+    },
+    chart: {
+      type: 'LINE',
+      container: 'users'
+    }
+  });
+
+  var sessions = new gapi.analytics.googleCharts.DataChart({
+    reportType: 'ga',
+    query: {
+      'dimensions': 'ga:date',
+      'metrics': 'ga:sessions',
+      'start-date': startOn,
+      'end-date': endOn,
+    },
+    chart: {
+      type: 'LINE',
+      container: 'sessions'
+    }
+  });
+
+  var bounceRate = new gapi.analytics.googleCharts.DataChart({
+    reportType: 'ga',
+    query: {
+      'dimensions': 'ga:date',
+      'metrics': 'ga:bounceRate',
+      'start-date': startOn,
+      'end-date': endOn,
+    },
+    chart: {
+      type: 'LINE',
+      container: 'bounce-rate'
+    }
+  });
+
+  var sessionDuration = new gapi.analytics.googleCharts.DataChart({
+    reportType: 'ga',
+    query: {
+      'dimensions': 'ga:date',
+      'metrics': 'ga:sessionDuration',
+      'start-date': startOn,
+      'end-date': endOn,
+    },
+    chart: {
+      type: 'LINE',
+      container: 'session-duration'
+    }
+  });
+
+  var pagesTable = new gapi.analytics.googleCharts.DataChart({
+    reportType: 'ga',
+    query: {
+      'dimensions': 'ga:pagePath',
+      'metrics': 'ga:pageviews,ga:uniquePageviews,ga:avgTimeOnPage,ga:entrances,ga:bounceRate,ga:exitRate',
+      'sort': '-ga:pageviews',
+      'start-date': startOn,
+      'end-date': endOn,
+      'max-results': 10,
+    },
+    chart: {
+      type: 'TABLE',
+      container: 'pages-table'
+    }
+  });
+
+  var sourcesTable = new gapi.analytics.googleCharts.DataChart({
+    reportType: 'ga',
+    query: {
+      'dimensions': 'ga:channelGrouping',
+      'metrics': 'ga:sessions,ga:percentNewSessions,ga:newUsers,ga:bounceRate,ga:pageviewsPerSession',
+      'start-date': startOn,
+      'end-date': endOn,
+    },
+    chart: {
+      type: 'TABLE',
+      container: 'sources-table'
+    }
+  });
+
+  var sourcesPie = new gapi.analytics.googleCharts.DataChart({
+    reportType: 'ga',
+    query: {
+      'dimensions': 'ga:channelGrouping',
+      'metrics': 'ga:sessions',
+      'start-date': startOn,
+      'end-date': endOn,
+    },
+    chart: {
+      type: 'PIE',
+      container: 'sources-pie'
+    }
+  });
+
+  // var usersByTime = new gapi.analytics.googleCharts.DataChart({
+  //   reportType: 'ga',
+  //   query: {
+  //     'dimensions': 'ga:dayOfWeek,ga:hour',
+  //     'metrics': 'ga:users',
+  //     'start-date': startOn,
+  //     'end-date': endOn,
+  //   },
+  //   chart: {
+  //     type: 'TABLE',
+  //     container: 'users-by-time'
+  //   }
+  // });
+
+  var report = new gapi.analytics.report.Data({
+    query: {
+      'dimensions': 'ga:dayOfWeek,ga:hour',
+      'metrics': 'ga:users',
+      'start-date': startOn,
+      'end-date': endOn,
+    }
+  });
+
+  report.on('success', function(response) {
+    google.charts.load('current', {'packages':['table']});
+    google.charts.setOnLoadCallback(drawTable);
+
+    function drawTable() {
+      var data = new google.visualization.DataTable();
+
+      data.addColumn('string', 'Sun');
+      data.addColumn('string', 'Mon');
+      data.addColumn('string', 'Tue');
+      data.addColumn('string', 'Wed');
+      data.addColumn('string', 'Thu');
+      data.addColumn('string', 'Fri');
+      data.addColumn('string', 'Sat');
+      data.addRows(24);
+
+      var rows = response.rows.filter(function(entry) {
+        data.setCell(parseInt(entry[1]), parseInt(entry[0]), entry[2]);
+      })
+
+      var table = new google.visualization.Table(document.getElementById('table_div'));
+
+      table.draw(data, {showRowNumber: true, width: '300px', height: '100%'});
+    }
+  });
+
+  var newIds = {
+    query: {
+      ids: "ga:68754581"
+    }
+  }
+  users.set(newIds).execute();
+  sessions.set(newIds).execute();
+  sessionDuration.set(newIds).execute();
+  bounceRate.set(newIds).execute();
+  pagesTable.set(newIds).execute();
+  sourcesTable.set(newIds).execute();
+  sourcesPie.set(newIds).execute();
+  // usersByTime.set(newIds).execute();
+  report.set(newIds).execute();
+
+  // Step 6: Hook up the components to work together.
+
+  gapi.analytics.auth.on('success', function(response) {
+    // viewSelector.execute();
+
+    $("#auth-button").append("<a href='#' class='js-sign-out'>Sign out</a>")
+  });
+
+  $(document).on("click", ".js-sign-out", function(e) {
+    e.preventDefault()
+    gapi.analytics.auth.signOut()
+    $(".js-sign-out").remove()
+  })
+
+  viewSelector.on('change', function(ids) {
+    var newIds = {
+      query: {
+        ids: ids
+      }
+    }
+    users.set(newIds).execute();
+    sessions.set(newIds).execute();
+    sessionDuration.set(newIds).execute();
+    bounceRate.set(newIds).execute();
+    pagesTable.set(newIds).execute();
+    sourcesTable.set(newIds).execute();
+    sourcesPie.set(newIds).execute();
+    // usersByTime.set(newIds).execute();
+    report.set(newIds).execute();
+  });
+});
+</script>

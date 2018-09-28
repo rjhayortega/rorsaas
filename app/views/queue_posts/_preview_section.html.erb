@@ -1,0 +1,176 @@
+<div class="row" id="preview-section_queue">
+  <div class="col-sm-12 card">
+    <div class="row">
+      <div class="col-sm-12" style="margin-bottom:10px;" >
+        <% @queue_list.profiles.each do |profile| %>
+          <% case profile.network 
+              when 'facebook'
+                tt = 'FB'
+              when 'twitter' 
+                tt = 'TW'
+              when 'linkedin'
+                tt = 'LN'
+              when 'instagram'
+                tt = 'IG'
+            end
+          %>
+          <button type="button" class="col-sm-3 link-btn h5 js-show-preview2" data-network="<%= profile.network %>"><%= tt %> <i class="fa fa-circle fa-lg btn<%= tt %>"></i>-</button>
+        <% end %>
+        
+ 
+      </div>
+    </div>
+
+    <div class="col-sm-12 preview_queue">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="popup_rightblock">
+            <% @queue_list.profiles.each do |profile| %>
+              <% case profile.network
+                when 'twitter' %>
+                  <div class="row " id="twitter_preview">
+                    <div class="row twitter_posts">
+                      <div class="col-lg-12" style="padding:0;">
+                        <div class="fb_profile_pit">
+                          <img src="<%= profile.profile_pic %>" class="js-reflect-twitter-image twitter_propic" id="twitter_preview_profile_pic">
+                          <strong id="twitter_preview_profile_name" class="js-reflect-twitter-name twitter_name" ><%= profile.fname %></strong>
+                          <span class="twitter_username js-reflect-twitter-handle"><%= profile.profile_id %></span>&nbsp;
+                          <i class="fa fa-circle fbdot"></i>&nbsp;
+                          <span class="tw_justnow">Just Now</span>
+                        </div>
+                        <div class="col-lg-12 nopadding tw--content" >
+                          <p class="js-reflect-queue-post-content"></p>
+                          <p class="js-reflect-queue-post-url"></p>
+                          <%= image_tag "noimage.png", id: "newimge_twitter" %>
+                          <div class="fb--preview--body">
+                            <div class="upload1 js-preview-image" id="image-holder2"> </div>
+                            <div class="fb--scrape--content"></div>
+
+                          </div>
+                        </div>
+                        <div class="col-lg-offset-2" id="uploadPreview" >
+                        </div>
+                        <div class="col-lg-12 nopadding" >
+                          <div class="like_com_shar like_com_shar_tw">
+                            <p class="col-lg-2 pull-left" ><strong> <i class="fa fa-reply"></i></strong></p>
+                            <p class="col-lg-2 pull-left" ><strong> <i class="fa fa-retweet"></i> </strong></p>
+                            <p class="col-lg-2 pull-left" ><strong> <i class="fa fa-heart"></i> </strong></p>
+                            <p class="col-lg-2 pull-left" ><strong> <i class="fa fa-ellipsis-h"></i> </strong></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <%  when 'facebook' %>
+                  <div class="row" id="facebook_preview">
+                    <div class="col-lg-12 popup-preview-alter">
+                      <div class="row fbtitle">
+                        <div class=" col-lg-2">
+                          <img src="<%= profile.profile_pic %>" class="js-reflect-facebook-image pull-left" id="fb_preview_profile_pic">
+                        </div>
+                        <div class=" col-lg-10">
+                          <div class="row fb--name">
+                            <strong  class="js-reflect-facebook-name" id="fb_preview_profile_name"><%= profile.fname %></strong>
+                          </div>
+                          <div class="row fb--time" >
+                            Just Now <i class="fa fa-circle fbdot" ></i> HouseQ <i class="fa fa-circle fbdot" ></i>
+                            <span class="fbpublic" ></span> <i class="fa fa-sort-desc fbarrow" ></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row no_margin_bottom">
+                        <p class="col-sm-12 col-md-12 no_margin_bottom js-reflect-queue-post-content" align="left"></p>
+                        <!-- <p class="col-sm-12 col-md-12 js-reflect-queue-post-url"></p> -->
+                      </div>
+                      <div class="row" id="ivpos">
+                        <div class=" col-lg-12 fb--border" id="uploadPreview">
+                          <%= image_tag "noimage.png", class: "Absolute-Center", id: "newimge_facebook" %>
+                          <div class="fb--preview--body">
+                            <div class="js-preview-image" id="image-holder1"></div>
+                            <div class="fb--scrape--content"></div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                          <div class="row fb--like--group">
+                            <div class="col-sm-12 col-md-12 no-space-bottom">
+                              <strong> <a href="#" class="fb--like"><i class="fa fa-thumbs-up" ></i> Like </a> </strong>
+                              <strong class="left-sp"> <a href="#" class="fb--like" ><span class="fbcmts"></span> Comment </a> </strong>
+                              <strong class="left-sp"> <a href="#" class="fb--like" ><i class="fa fa-share" ></i> Share </a> </strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% when 'instagram' %>
+                  <div class="row" id="instagram_preview">
+                    <div class="twitter_posts col-sm-12 insta--body" >
+                      <div class="ins_profile_pit col-sm-12">
+                        <img src="<%= profile.profile_pic if profile.profile_pic.present?  %>" class="js-reflect-instagram-image pull-left" id="instagram_preview_profile_pic">
+                        <div id="span_insta_name"><strong id="instagram_preview_profile_name"> </strong></div>
+                        <a href="#" class="notextdeco">0m</a>
+                      </div>
+                      <div class="" id="uploadPreview">
+                        <img src=""  id="newimge_instagram">
+                        <div class="upload1 js-preview-image" id="image-holder9"> </div>
+                      </div>
+                      <div class="col-lg-10 insta--name">
+                        <b id="cap_name" class="js-reflect-instagram-name"><%= profile.fname %></b> <br /><span class="js-reflect-queue-post-content"></span> <span class="js-reflect-queue-post-url"></span>
+                      </div>
+                      <div class="col-lg-12" >
+                        <div class="like_com_shar like_com_shar_in">
+                          <hr>
+                          <p class="col-lg-10 pull-left"><strong> <i class="fa fa-heart-o"></i> </strong>Add a comment</p>
+                          <p class="col-lg-2 pull-left"><strong> <i class="fa fa-ellipsis-h"></i> </strong></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% when 'linkedin' %>
+                  <div class="row" id="linkedin_preview">
+                    <div class="col-lg-12 lknbg">
+                      <div class="col-lg-2 pull-left lkn_left" >
+                        <img  src="<%= profile.profile_pic %>" id="linkedin_preview_profile_pic" class="js-reflect-linkedin-image" >
+                      </div>
+                      <div  class="col-lg-10  bg-white ln--name">
+                        <p><strong id="linkedin_preview_profile_name" class="js-reflect-linkedin-name"><%= profile.fname %></strong> </p>
+                        <hr/>
+                      </div>
+                      <div  class="col-lg-10 pull-right bg-white" >
+                        <p class="ln--body">
+                          <strong class="js-reflect-queue-post-content"></strong>
+
+                        </p>
+
+                        <div class="col-lg-12  col-sm-6 nopadding lin_prev" id="lin_url_prev">
+                          <div  id="uploadPreview" class="col-lg-4 col-sm-3 nopadding js-preview-image">
+                            <%= image_tag "noimage.jpg", id: "newimge_linkedin" %>
+                            <div class="upload1" id="image-holder3"> </div>
+                          </div>
+                          <div class="col-lg-8 col-sm-4 linkedin-right-block" id="linkedinImg">
+                            <p id="linkedin_urlText">Social Marketing </p>
+                            <span class="pull-right"></span> </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-10 pull-right like_com_shar like_com_shar_ln bg-white">
+                        <p class="pull-left"><strong><a href="#" class="linkedin_clr">Like</a>&nbsp;&nbsp;<i class="fa fa-circle"></i>&nbsp;&nbsp;</strong></p>
+                        <p class="pull-left"><strong><a href="#" class="linkedin_clr">Comment</a>&nbsp;&nbsp;<i class="fa fa-circle"></i>&nbsp;&nbsp;</strong></p>
+                        <p class="pull-left"><strong><a href="#" class="linkedin_clr">Share</a> </strong></p>
+                      </div>
+                    </div>
+                  </div>
+              <% end %>
+            <% end %>
+            <input type="hidden" name="cur_image" id="cur_image" />
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="tab-content bottom-img-preview_alter" >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

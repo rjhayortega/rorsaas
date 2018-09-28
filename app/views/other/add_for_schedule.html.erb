@@ -1,0 +1,26 @@
+<style>
+  .form-wrapper {
+    width: 50%;
+    margin: 0 auto;
+  }
+  .form-control{
+    font-size: 16px;
+  }
+</style>
+
+<div class="form-wrapper">
+  <h2 style="padding-left: 0; padding-right: 0; padding-top: 50px;">Add Account for Scheduling</h2>
+  <form method="POST" action="<%= Rails.env.production? ? 'http://app.houseq.io' : 'http://dev.house.com' %>/add_edit_schedugram.php?type=add&current_user_id=<%= current_user.id %>">
+    <div class="form-group">
+      <label>Username: </label>
+      <input type="text" class="form-control" name="txtUser" id="txtUser" value="">
+    </div>
+    <div class="form-group">
+      <label>Password: </label>
+      <input type="password" class="form-control" name="txtPass" id="txtPass" required>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Submit" class="btn btn-primary btn-block">
+    </div>
+  </form>  
+</div>

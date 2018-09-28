@@ -1,0 +1,26 @@
+h2 style="margin-top: 0;color: #424753;margin-bottom: 0;" Accounts
+.row
+  .col-lg-6
+  .col-lg-6 align="right"
+    a.link-black href="javascript:void(0);" onclick="validate_add();"
+      | ADD NEW ACCOUNT
+      span.red-circle-plus
+        i.fa.fa-plus.fa-lg.fa-inverse style="margin:0;"
+
+.row.js-bricks-container
+  = render @profiles, show_delete: true
+  /= render partial: "profiles/profile", collection: @pages, locals: { show_delete: true }
+  = render partial: "profiles/profile", collection: @pages, locals: { show_delete: true, is_page: true }
+- if params[:type] == 'instagram'
+  coffee:
+    swal('Thanks for adding your Instagram Account!', 'In the next 24 hours, you will receive an email, and likely a notification on your Instagram account asking for you to verify your account. This will be in the form of a “Was this you?” message, or a “Code” message.\nOnce you receive this, please head to your accounts dashboard, click the Verify button under your Instagram profile and insert the code.\nThe ”Was this you?” message will likely come from either Sydney or Melbourne as this is where our servers are based for our Instagram scheduling feature.\nIf you have any questions, please let us know!')
+
+- if params[:msg] == 'exists'
+  coffee:
+    swal('Sorry, your account is already connected.', 'Please try with another account')
+
+- if params[:msg] == 'success'
+  coffee:
+    swal('Success', 'Your Account has connected Successfully!')
+
+= render 'fb_modal'

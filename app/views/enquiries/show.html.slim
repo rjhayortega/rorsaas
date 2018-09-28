@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @enquiry.name
+p
+  strong Phone:
+  = @enquiry.phone
+p
+  strong Email:
+  = @enquiry.email
+p
+  strong Postcode:
+  = @enquiry.postcode
+p
+  strong Message:
+  = @enquiry.message
+p
+  strong Agent:
+  = @enquiry.agent
+p
+  strong Property:
+  = @enquiry.property
+
+= link_to 'Edit', edit_enquiry_path(@enquiry)
+'  |
+= link_to 'Back', enquiries_path

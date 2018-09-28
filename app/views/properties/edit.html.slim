@@ -1,0 +1,6 @@
+.property-preview.row
+  .property-form.col-lg-4
+    h1 Editing property
+    = render 'form'
+
+  iframe.property-iframe#js-property-iframe src=property_path(@property)

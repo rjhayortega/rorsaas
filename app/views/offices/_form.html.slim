@@ -1,0 +1,7 @@
+= simple_form_for(@office) do |f|
+  = f.error_notification
+
+  = f.input :name, autofocus: true
+  = f.input :maximum_users_count, autofocus: true, label: "Max Users"
+
+  = f.button :submit

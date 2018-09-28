@@ -1,0 +1,2 @@
+class AccountLimit < ApplicationRecord
+end

@@ -1,0 +1,48 @@
+<%= simple_form_for @queue_list, id: "js-queue-list-form" do |f| %>
+  <%= hidden_field_tag "queue_list[profile_ids][]", nil %>
+  <%= hidden_field_tag "queue_list[profile_page_ids][]", nil %>
+
+  <div class="row" style="margin-bottom: 0;">
+    <div class="col-lg-12">
+      <h2 style="margin-top:0;color:#424753;">Queue</h2>
+    </div>
+  </div>
+
+  <div class="row" style="margin-bottom: 0;">
+    <%= render "create_new_queue_button", path: new_queue_list_path %>
+
+    <div class="col-lg-12">
+      <ol class="full_underline bcrumb" style="padding-left: 0;">
+        <li class="h5">
+          <%= link_to "BATCH SETUP", edit_queue_list_path(@queue_list) %>
+        </li>
+        <li class="h5">
+          <%= link_to "ACTIVITY LEVEL", activity_queue_list_path(@queue_list) %>
+        </li>
+        <li class="h5 active">SELECT ACCOUNT</li>
+      </ol>
+    </div>
+
+    <div class="col-lg-12">&nbsp;</div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <h5 style="margin-top: 0;margin-bottom: 30px;">SELECT ACCOUNT</h5>
+    </div>
+    <div class="col-lg-6" align="right">
+      <a href="javascript:void(0);" onClick="validate_add();" class="link-black">ADD NEW ACCOUNT <span class="red-circle-plus">
+        <i class="fa fa-plus fa-lg fa-inverse" style="margin:0;"></i></span></a>
+    </div>
+  </div>
+
+  <%= render @profiles, f: f %>
+  <%= render partial: "profiles/profile", collection: @pages, locals: { f: f } %>
+
+  <% if params[:creating].present? %>
+    <%= hidden_field_tag :creating, true %>
+    <button class="link-red link-btn" style="float: right;margin-top: 30px;">NEXT <span class="fa fa-arrow-right"></span></button>
+  <% else %>
+    <button class="link-red link-btn" style="float: right;margin-top: 30px;">UPDATE QUEUE</span></button>
+  <% end %>
+<% end %>

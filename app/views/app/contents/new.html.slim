@@ -1,0 +1,16 @@
+#page-content-wrapper
+  h1 style="color: #0F0F0F;" Create Content
+
+  = form_for [:app, Content.new] do |f|
+    div class="form-group"
+      = f.label :description
+      = f.text_field :description, class: "form-control", placeholder: "What you want?"
+
+    script{
+      src="https://checkout.stripe.com/checkout.js"
+      class="stripe-button"
+      data-key=Rails.application.secrets.stripe_key
+      data-image="//app.knackmap.com/images/paymet_logo.png"
+      data-name="knackmap.com"
+      data-description="<?=$plan?>"
+      data-amount="<?=($amount/100).'00'?>"}

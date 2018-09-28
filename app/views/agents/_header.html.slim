@@ -1,0 +1,16 @@
+.container-fluid
+  .row
+    .col-lg-12
+      h2 style="margin-top:0;color:#424753;" Landing Page
+  .row
+    div class="create-queue-btn" align="right"
+      = link_to new_property_path, class: "link-black" do
+        ' CREATE NEW PAGE
+        span class="red-circle-plus"
+          i class="fa fa-plus fa-lg fa-inverse" style="margin:0;"
+
+    .col-lg-12
+      h4.header--underline
+        span = link_to 'PAGE LIST | ', properties_path
+        span = link_to 'Agents | ', agents_path
+        span = link_to 'Enquires', enquiries_path

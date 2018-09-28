@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h2 style="margin-top:0;color:#424753;">Landing Page</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <h5>SETUP NEW LANDING PAGE</h5>
+  </div>
+</div>
+
+<%= form_for Property.new, remote: false do |f| %>
+  <div class="row flex-parent">
+    <div class="row batch-setup-box">
+      <div class="col-sm-8">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12 text-left textdescription">
+              <%= f.label :name, "LANDING PAGE NAME" %>
+              <%= f.text_field :name, class: "form-control borderless", placeholder: "Name of your landing page" %>
+              <button class="link-red link-btn">NEXT <span class="fa fa-arrow-right"></span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

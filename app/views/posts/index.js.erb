@@ -1,0 +1,9 @@
+<% if @posts.any? %>
+  $("#sidebar_post_detail").html("<%= j render 'posts/sidebar_post_detail' %>");
+  var localTimes = $('.local_time');
+  $.each(localTimes, function(ind, value) {
+  	$(value).text(localtime($(value).text()));
+  })
+<% else %>
+  $("#sidebar_post_detail").html("")
+<% end %>

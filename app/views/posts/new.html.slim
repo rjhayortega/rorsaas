@@ -1,0 +1,21 @@
+.row style=("margin-bottom: 0;")
+  .col-lg-12
+    h2 style="margin-top:0;color:#424753;" Queue
+
+.row style=("margin-bottom: 0;")
+  = render "queue_lists/create_new_queue_button"
+
+  .col-lg-12
+    ol.full_underline.bcrumb style=("padding-left: 0;")
+      li.h5 ADD HOMES
+  .col-lg-12
+
+.row
+  .col-lg-6
+    / - if @queue_list.present?
+      / = link_to @queue_list, class: "link-red h4" do
+        / | GO BACK
+        / i.fa.fa-arrow-left
+    h5 style=("margin-top: 0; margin-bottom: 30px;") SCHEDULE AND ADD POST
+
+  = render 'form'

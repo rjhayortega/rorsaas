@@ -1,0 +1,21 @@
+h1 Listing facebook_ads
+
+table
+  thead
+    tr
+      th Facebook connected account
+      th
+      th
+      th
+
+  tbody
+    - @facebook_ads.each do |facebook_ad|
+      tr
+        td = facebook_ad.facebook_connected_account
+        td = link_to 'Show', facebook_ad
+        td = link_to 'Edit', edit_facebook_ad_path(facebook_ad)
+        td = link_to 'Delete', facebook_ad, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Facebook ad', new_facebook_ad_path

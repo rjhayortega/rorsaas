@@ -1,0 +1,37 @@
+h1 Offices in #{current_user.organisation.name}
+
+table.table
+  thead
+    tr
+      th Office Name
+      th Members
+      th Payer
+      th Actions
+
+  tbody
+    - @offices.each do |office|
+      tr
+        td = link_to office.name, office
+
+        td
+          = office.users_count
+          '  /
+          = office.maximum_users_count
+
+        td
+          - if office.payer.present?
+            = link_to office.payer.name, office.payer
+        td
+          - if office.payer == current_user
+            = button_to 'Stop paying', stop_payment_office_path(office), method: :delete, class: "btn btn-danger", data: {disable_with: "Stopping"}
+
+          - else
+            = form_tag take_payment_office_path(office) do
+              script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_XupqM1TQHjverm9BUFivDbkD" data-name="Knackmap" data-description="Take future payment for #{office.name}" data-amount="#{2500 + office.users_count*1000}" data-label="I will pay"
+
+          / '  |
+          = link_to 'Edit', edit_office_path(office)
+          '  |
+          = link_to 'Delete', office, data: { confirm: 'Are you sure you want to complete delete this office with all its agents?' }, method: :delete
+
+= link_to 'New office', new_office_path

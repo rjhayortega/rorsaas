@@ -1,0 +1,11 @@
+= render 'agents/header'
+
+- if @properties.any?
+  .row
+    .col-lg-12
+      = render @properties
+
+- else
+  div class="new-item-prompt"
+    = link_to new_property_path do
+      h1 class="window-title" Create New Property +

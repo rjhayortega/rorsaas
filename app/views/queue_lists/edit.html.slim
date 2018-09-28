@@ -1,0 +1,15 @@
+.container-fluid
+  .row
+    .col-lg-12
+      h2 style="margin-top:0;color:#424753;"  Queue
+  .row
+    = render "create_new_queue_button"
+    .col-lg-12
+      h4.header--underline
+        span Automated Post List
+    .col-sm-12 align="right"
+      = link_to "ACTIVITY SETTINGS", activity_queue_list_path(@queue_list), class: "link-black"
+      '  |
+      = link_to "ADD POST", new_queue_list_queue_post_path(@queue_list), class: "link-black"
+      '  |
+      = link_to "MANAGE ACCOUNTS", accounts_queue_list_path(@queue_list), class: "link-black"

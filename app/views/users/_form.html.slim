@@ -1,0 +1,53 @@
+= form_for @user, class: "edit_user" do |f|
+  .row
+    - if @user.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+        ul
+          - @user.errors.full_messages.each do |message|
+            li = message
+
+    .form-group.col-sm-6
+      = f.label "First Name"
+      = f.text_field :first_name, class: "form-control"
+    .form-group.col-sm-6
+      = f.label "Last Name"
+      = f.text_field :last_name, class: "form-control"
+    .form-group.col-sm-6
+      = f.label :email
+      = f.text_field :email, class: "form-control"
+    .form-group.col-sm-6
+      = f.label "Password"
+      = f.password_field :password, class: "form-control"
+    .form-group.col-sm-6
+      = f.label "Password_Confirmation"
+      = f.password_field :password_confirmation, class: "form-control"
+    .form-group.col-sm-6
+      = f.label "Address"
+      = f.text_field :address, class: "form-control", id: "user_location"
+    .form-group.col-sm-6
+      = f.label "Country"
+      = f.text_field :country, class: "form-control", id: 'user_country'
+    .form-group.col-sm-6
+      = f.label "State"
+      = f.text_field :state, class: "form-control", id: 'user_state'
+      = f.hidden_field :city, class: "form-control", id: 'user_city'
+    .form-group.col-sm-6
+      = f.label "Job Title"
+      = f.text_field :job_title, class: "form-control"
+    .form-group.col-sm-6
+      = f.label "Company"
+      = f.text_field :company, class: "form-control"
+    .form-group.col-sm-12
+      = f.label "Change Picture"
+      = f.file_field :profile_picture, id: "profile_img", onChange: "readURL(this)"
+      br
+      = image_tag @user.profile_picture.thumb.url || "noimage.jpg", class: "no_image_profile", id: "PreviewPhoto"
+    .form-group.col-sm-12
+      = f.label "Bio"
+      = f.text_area :bio, rows: "3", cols:"100", class: "form-control col-sm-12 fixed_text_area"
+
+    .form-group.col-sm-12
+      .actions = f.submit
+/ @user.profile_picture.url || 
+          

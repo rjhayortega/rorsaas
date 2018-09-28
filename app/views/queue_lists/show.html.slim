@@ -1,0 +1,41 @@
+.container-fluid
+  .row
+    .col-lg-12
+      h2 style="margin-top:0;color:#424753;"  Queue - #{@queue_list.name}
+
+  .row
+    = render "create_new_queue_button"
+    .col-lg-12
+      h4.header--underline
+        span Automated Post List 
+        span = "#{@queue_list.started_on} ~ "
+        span = @queue_list.ended_on
+
+    .col-sm-12 align="right"
+      = button_to "reschedule", reschedule_queue_list_path(@queue_list), class: "link-black"
+      '  |
+      = link_to "ACTIVITY SETTINGS", activity_queue_list_path(@queue_list), class: "link-black"
+      '  |
+      = link_to "ADD POST", new_queue_list_queue_post_path(@queue_list), class: "link-black"
+      '  |
+      = link_to "MANAGE ACCOUNTS", accounts_queue_list_path(@queue_list), class: "link-black"
+      '  |
+      = link_to "DELETE QUEUE", queue_list_path(@queue_list), method: :delete, data: { confirm: "Are you sure?" }, class: "link-black"
+
+  .row
+    - @queue_list.queue_posts.each do |queue_post|
+      .col-lg-3
+        .card
+          - if queue_post.image.url.present?
+            = link_to queue_post, class: 'card-cover queue-post' do
+              = image_tag queue_post.image.url
+          - elsif queue_post.other_image_url.present?
+            = link_to queue_post, class: 'card-cover queue-post' do
+              = image_tag queue_post.other_image_url
+          .card-content
+            h4.headline--center
+              = link_to queue_post.description, queue_post
+              = link_to "Edit Post", edit_queue_post_path(queue_post), class: "queue_post_edit"
+              = link_to "Delete Post", queue_post, class: "queue_post_delete", method: :delete, data: { confirm: "Are you sure?" }
+            / - queue_post.posts.order(:scheduled_at).each do |post|
+            /   p = post.scheduled_at

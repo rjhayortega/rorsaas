@@ -1,0 +1,56 @@
+<button type="button" id="choose_fb_pages" class="js-open-modal" style="display: none;" data-target="#fbPages">dxf</button>
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+  <% end -%>
+<% end -%>
+
+
+<div class="modal fade profile_modal" id="fbPages" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="width: 50%; margin: 0 auto;">
+  <div class="modal-dialog wide-dialog" role="document" style="width: 100%;">
+    <div class="modal-content" id="setpopup_width" style="border-bottom: none;">
+      <div class="modal-header white-header" style="padding-bottom: 0;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+        <% if @is_connect > 0 %>
+        <h4 class="modal-title acc-title" id="myModalLabel">Connect Your Pages</h4>
+        <% else %>
+        <h4 class="modal-title acc-title" id="myModalLabel">Your Account was already created.</h4>
+        <% end %>
+      </div>
+      <div class="modal-body connect-modal-body">
+        <div class="row" style="margin: 15px;">
+          <table class="fb-page-accounts" width="100%">
+            <tr>
+              <td colspan="2" style="font-size: 18px;"><i class="fa fa-facebook-square" style="width: 25px;"></i>James Cruz</td>
+            </tr>
+            <% @pages.each do |page| %>
+            <% if page.network == 'facebook' %>
+            <tr>
+              <td align="left" style="padding: 10px 0;">
+                <img src="https://graph.facebook.com/<%= page.page_id %>/picture?access_token=<%= page.access_token %>">
+                <%= page.page_name.upcase %>
+              </td>
+              <% if page.connect == 1 %>
+              <td align="right"><i class="fa fa-thumbs-up" aria-hidden="true" style="color: green;"></i></td>
+              <% else %>
+              <td align="right">
+                <input type="checkbox" class="fb_page_id" value="<%= page.page_id %>">
+              </td>
+              <% end %>
+            </tr>
+            <% end %>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer white-footer">
+        <% if @is_connect > 0 %>
+        <button type="button" class="btn btn-link acc-btn-red" onClick="choose_fb_page();" data-dismiss="modal">Connect</button>
+        <% else %>
+        <button type="button" class="btn btn-link acc-btn-red" data-dismiss="modal">Done</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

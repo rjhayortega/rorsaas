@@ -1,0 +1,29 @@
+.container-fluid
+  .row
+    .col-lg-12
+      h2 style="margin-top:0;color:#424753;"  Queue
+  .row
+    = render "create_new_queue_button", path: new_queue_list_path
+    .col-lg-12
+      h4.header--underline
+        span QUEUE LIST
+    .col-lg-12  
+
+  - if @queue_lists.any?
+    section.col-lg-12
+      = render @queue_lists
+
+  - else
+    .new-item-prompt
+      = link_to new_queue_list_path do
+        = image_tag 'windows.png'
+        h1.window-title Create New Batch of Queue +
+
+  - if @promotion_posts.any?
+    .row
+      .col-lg-12
+        h4.header--underline
+          span PROMOTION POSTS
+
+      .col-lg-12
+        = render 'promotion_posts/posts', promotion_posts: @promotion_posts
